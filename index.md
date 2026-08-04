@@ -44,7 +44,6 @@ title: Home
     <div class="about-content">
       <p>My first experience, in the design room at Ashok Leyland building CAD and FEA models for load bodies, taught me engineering nuance and trade-offs firsthand. Hands-on service work, diagnosing failures and overhauling engine and transmission systems, gave me an appreciation for a vehicle as a harmonious relationship between its many elements, nuts and bolts included.</p>
       <p>A master's degree at the University of Michigan pointed that curiosity toward architecture and controls, and a 48-month clean-sheet to production launch on the Ford Bronco AWD system taught me what it actually takes to get an idea past a review board and onto the road (and the rush of watching customers enjoy it). Consulting inside Fortune 500 automakers has been about building the requirements traceability, digital-thread architecture, and standardized workflows that keep engineering teams across continents working in sync, at pace and with consistency.</p>
-      <p>Working across different areas of product development over the years has given me a breadth of experience that shapes how I think about systems, a deeper appreciation for trade-offs, and a more holistic view of what it actually takes to bring a product to life.</p>
     </div>
   </section>
 

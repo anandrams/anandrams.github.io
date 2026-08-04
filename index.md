@@ -6,7 +6,6 @@ title: Home
 <div class="hero-section hero-split">
   <div class="hero-content hero-split-inner">
     <div class="hero-text">
-      <p class="hero-eyebrow">- Systems Engineering Leader -</p>
       <h1>Anand Ram Sathyanarayanan</h1>
       <p class="hero-credibility">Systems engineer with 10+ years in the automotive domain, from production-critical control algorithms to enterprise MBSE programs that span continents.</p>
       <p class="hero-passion">I'm passionate about solving complex problems and building products that spark joy: the kind people actually use and notice.</p>

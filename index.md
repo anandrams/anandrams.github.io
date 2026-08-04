@@ -101,7 +101,7 @@ title: Home
         <div class="vt-node vt-node-exp"></div>
         <div class="vt-card">
           <span class="vt-date">2015 – 2016</span>
-          <h3>Deputy Manager, Technical Service &amp; Strategy</h3>
+          <h3>Deputy Manager</h3>
           <p>Ashok Leyland Ltd., Chennai, India</p>
         </div>
       </div>

@@ -5,7 +5,7 @@ title: Blog
 
 <div class="page-content">
   <h1>Blog</h1>
-  <p class="proj-intro">Writing on engineering practice, published on LinkedIn.</p>
+  <p class="proj-intro">My articles on engineering practice, published on LinkedIn, Substack, or here.</p>
 
   <div class="article-grid">
 

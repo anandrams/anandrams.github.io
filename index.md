@@ -3,14 +3,11 @@ layout: default
 title: Home
 ---
 
-<div class="hero-section">
-  <div class="hero-content">
-    <div class="hero-profile">
-      <img src="/assets/linkedin_headshot_3.jpg" alt="Anand Ram Sathyanarayanan">
-    </div>
+<div class="hero-section hero-split">
+  <div class="hero-content hero-split-inner">
     <div class="hero-text">
       <p class="hero-eyebrow">Systems Engineering Leader</p>
-      <h1>Anand Ram<br>Sathyanarayanan</h1>
+      <h1>Anand Ram Sathyanarayanan</h1>
       <p class="hero-credibility">Systems engineer with 10+ years in the automotive domain, from production-critical control algorithms to enterprise MBSE programs that span continents.</p>
       <p class="hero-passion">I'm passionate about solving complex problems and building products that spark joy: the kind people actually use and notice.</p>
       <div class="hero-social">
@@ -24,6 +21,9 @@ title: Home
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
         </a>
       </div>
+    </div>
+    <div class="hero-photo">
+      <img src="/assets/linkedin_headshot_3.jpg" alt="Anand Ram Sathyanarayanan">
     </div>
   </div>
   <div class="scroll-indicator">
@@ -39,6 +39,7 @@ title: Home
 <div id="main-content">
 
   <section id="about" class="section-container">
+    <span class="section-eyebrow">About Me</span>
     <h2 class="section-title">Experiences that have shaped me</h2>
     <div class="about-content">
       <p>My first experience, in the design room at Ashok Leyland building CAD and FEA models for load bodies, taught me engineering nuance and trade-offs firsthand. Hands-on service work, diagnosing failures and overhauling engine and transmission systems, gave me an appreciation for a vehicle as a harmonious relationship between its many elements, nuts and bolts included.</p>
@@ -48,6 +49,7 @@ title: Home
   </section>
 
   <section id="bring" class="section-container section-alt">
+    <span class="section-eyebrow">What I Bring</span>
     <h2 class="section-title">A different vantage point</h2>
     <div class="highlights-grid">
       <div class="highlight-card">
@@ -75,6 +77,7 @@ title: Home
   </section>
 
   <section id="journey" class="section-container">
+    <span class="section-eyebrow">Journey</span>
     <h2 class="section-title">Education and experience</h2>
     <div class="vtimeline">
 
@@ -136,6 +139,7 @@ title: Home
   </section>
 
   <section id="competencies" class="section-container section-alt">
+    <span class="section-eyebrow">Core Competencies</span>
     <h2 class="section-title">Depth across the stack</h2>
     <div class="competency-grid">
 
@@ -220,6 +224,7 @@ title: Home
   </section>
 
   <section id="articles" class="section-container">
+    <span class="section-eyebrow">Blog</span>
     <h2 class="section-title">Featured Articles</h2>
     <p class="section-sub">Recent writing on engineering practice, published on LinkedIn.</p>
     <div class="article-grid">
@@ -291,6 +296,7 @@ title: Home
   </section>
 
   <section id="work" class="section-container section-alt">
+    <span class="section-eyebrow">Projects</span>
     <h2 class="section-title">Featured Work</h2>
     <p class="section-sub">Full case studies shared in conversation — reach out to see the work.</p>
     <div class="work-grid">

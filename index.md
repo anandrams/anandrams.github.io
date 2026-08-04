@@ -225,7 +225,7 @@ title: Home
   <section id="articles" class="section-container">
     <span class="section-eyebrow">Blog</span>
     <h2 class="section-title">Featured Articles</h2>
-    <p class="section-sub">Recent writing on engineering practice, published on LinkedIn.</p>
+    <p class="section-sub">My articles on engineering practice, published on LinkedIn, Substack, or here.</p>
     <div class="article-grid">
 
       <a class="article-card" href="https://www.linkedin.com/pulse/transforming-engineering-efficiency-simulation-sathyanarayanan-se2rc" target="_blank" rel="noopener">

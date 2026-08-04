@@ -235,7 +235,7 @@ img {
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  padding-top: calc(var(--navbar-height) + 2rem);
+  padding-top: calc(var(--navbar-height) + 0.5rem);
   background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
   position: relative;
 }

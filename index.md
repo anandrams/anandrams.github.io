@@ -38,7 +38,7 @@ title: Home
 
 <div id="main-content">
 
-  <section id="about" class="section-container" data-aos="fade-up">
+  <section id="about" class="section-container">
     <h2 class="section-title">Experiences that have shaped me</h2>
     <div class="about-content">
       <p>My first experience, in the design room at Ashok Leyland building CAD and FEA models for load bodies, taught me engineering nuance and trade-offs firsthand. Hands-on service work, diagnosing failures and overhauling engine and transmission systems, gave me an appreciation for a vehicle as a harmonious relationship between its many elements, nuts and bolts included.</p>
@@ -47,7 +47,7 @@ title: Home
     </div>
   </section>
 
-  <section id="bring" class="section-container section-alt" data-aos="fade-up">
+  <section id="bring" class="section-container section-alt">
     <h2 class="section-title">A different vantage point</h2>
     <div class="highlights-grid">
       <div class="highlight-card">
@@ -74,7 +74,7 @@ title: Home
     </div>
   </section>
 
-  <section id="journey" class="section-container" data-aos="fade-up">
+  <section id="journey" class="section-container">
     <h2 class="section-title">Education and experience</h2>
     <div class="vtimeline">
 
@@ -135,7 +135,7 @@ title: Home
     </div>
   </section>
 
-  <section id="competencies" class="section-container section-alt" data-aos="fade-up">
+  <section id="competencies" class="section-container section-alt">
     <h2 class="section-title">Depth across the stack</h2>
     <div class="competency-grid">
 
@@ -219,7 +219,7 @@ title: Home
     </div>
   </section>
 
-  <section id="articles" class="section-container" data-aos="fade-up">
+  <section id="articles" class="section-container">
     <h2 class="section-title">Featured Articles</h2>
     <p class="section-sub">Recent writing on engineering practice, published on LinkedIn.</p>
     <div class="article-grid">
@@ -290,7 +290,7 @@ title: Home
     </div>
   </section>
 
-  <section id="work" class="section-container section-alt" data-aos="fade-up">
+  <section id="work" class="section-container section-alt">
     <h2 class="section-title">Featured Work</h2>
     <p class="section-sub">Full case studies shared in conversation — reach out to see the work.</p>
     <div class="work-grid">
@@ -348,7 +348,7 @@ title: Home
     {% endif %}
   </section>
 
-  <section id="cta" class="section-container section-cta" data-aos="fade-up">
+  <section id="cta" class="section-container section-cta">
     <div class="cta-content">
       <h2>Ready to Transform Your Engineering?</h2>
       <p>Let's discuss how I can help drive your next automotive innovation.</p>

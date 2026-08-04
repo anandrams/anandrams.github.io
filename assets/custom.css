@@ -1644,7 +1644,8 @@ footer p {
   color: var(--text-secondary);
   max-width: 640px;
   line-height: 1.6;
-  margin: 0.5rem 0 3rem;
+  margin: 0.5rem auto 3rem;
+  text-align: center;
 }
 
 .proj-section-label {

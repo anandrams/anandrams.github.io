@@ -292,13 +292,14 @@ img {
   justify-content: flex-start;
 }
 
-.hero-split-inner .hero-eyebrow::before {
+.hero-split-inner .hero-eyebrow::before,
+.hero-split-inner .hero-eyebrow::after {
   display: none;
 }
 
 .hero-split-inner .hero-credibility,
 .hero-split-inner .hero-passion {
-  text-align: left;
+  text-align: justify;
 }
 
 .hero-photo {
@@ -327,12 +328,9 @@ img {
   .hero-split-inner .hero-eyebrow {
     justify-content: center;
   }
-  .hero-split-inner .hero-eyebrow::before {
-    display: block;
-  }
   .hero-split-inner .hero-credibility,
   .hero-split-inner .hero-passion {
-    text-align: center;
+    text-align: justify;
   }
   .hero-photo {
     order: -1;
@@ -1231,6 +1229,7 @@ footer p {
   color: var(--text-primary);
   line-height: 1.5;
   margin: 1.25rem 0 0.75rem;
+  text-align: justify;
 }
 
 .hero-passion {
@@ -1238,6 +1237,7 @@ footer p {
   font-size: 1.05rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  text-align: justify;
 }
 
 /* ============================================

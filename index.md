@@ -345,11 +345,9 @@ title: Home
       </div>
 
     </div>
-    {% if site.show_projects %}
     <div class="section-viewall">
-      <a href="/projects.html">View all projects →</a>
+      <a href="#" onclick="openContact(event)">View all projects →</a>
     </div>
-    {% endif %}
   </section>
 
   <section id="cta" class="section-container section-cta">

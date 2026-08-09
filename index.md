@@ -346,7 +346,7 @@ title: Home
 
     </div>
     <div class="section-viewall">
-      <a href="#" onclick="openContact(event)">View all projects →</a>
+      <a href="#" onclick="openContact(event)">Get in touch to view other projects →</a>
     </div>
   </section>
 

@@ -291,6 +291,9 @@ h1, h2, h3, h4 {
   padding: 3px 8px;
 }
 .kind.essay { color: var(--accent); border-color: var(--accent); }
+/* The third format reads as a solid chip, so the three are told apart by
+   shape as well as colour. */
+.kind.notes { background: var(--chip); border-color: var(--muted); color: var(--ink); }
 
 /* status: never colour alone — the shapes differ too */
 .pill {

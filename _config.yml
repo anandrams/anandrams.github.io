@@ -40,11 +40,17 @@ defaults:
       type: articles
     values:
       layout: article
+      # These must live here, not in the layout's front matter: Jekyll
+      # exposes a layout's own front matter as `layout`, not `page`, so
+      # set there they would silently never fire.
+      nav_section: Writing
+      readbar: true
   - scope:
       path: ""
       type: projects
     values:
       layout: project
+      nav_section: Projects
   - scope:
       path: ""
     values:

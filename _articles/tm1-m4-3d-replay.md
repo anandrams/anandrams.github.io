@@ -5,14 +5,14 @@ date: 2026-10-24 07:00:00 +0000
 part: 7
 phase: "M4"
 kind: Article
-series: "TM-1 project notes"
+series: "TM-1 UAV"
 series_slug: tm1
-project: "TM-1"
+project: "TM-1 UAV"
 project_url: /projects/tm1/
 theme: "Visualization"
 image: /assets/articles/tm1/media/m4/model/render_front_quarter.jpg
 image_alt: "Rendered three-quarter view of the TM-1 aircraft."
-simnote: "TM-1 project notes, milestone M4. Simulation only: no real aircraft was built or flown."
+simnote: "TM-1 UAV, milestone M4. Simulation only: no real aircraft was built or flown."
 tags:
   - "UAV"
   - "simulation"

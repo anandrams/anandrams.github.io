@@ -18,9 +18,14 @@ Then open <http://127.0.0.1:4000>. Saving a file rebuilds the page.
 `Gemfile` pins the `github-pages` gem, which is the exact set of versions
 GitHub Pages runs. So if it builds here, it builds there.
 
-If `bundle install` complains about a missing Ruby or a permissions error,
-install Ruby with Homebrew (`brew install ruby`) and add its `bin` to the
-path rather than using the one macOS ships.
+Two things that can go wrong the first time:
+
+- **A version conflict from `Gemfile.lock`.** It is the old site's lock file
+  and predates the `github-pages` gem. Delete it and run `bundle install`
+  again; a copy is kept in `_archive/v1/Gemfile.lock`.
+- **A missing Ruby, or a permissions error.** Install Ruby with Homebrew
+  (`brew install ruby`) and put its `bin` on the path rather than using the
+  one macOS ships.
 
 ---
 
@@ -66,7 +71,12 @@ python3 tools/sync_articles.py \
 
 That reads every `*.md` in the source folder, rewrites the media paths,
 copies the images and videos into `assets/articles/tm1/media/`, and writes
-`_articles/*.md`. It is safe to re-run; it overwrites and never deletes.
+one `_articles/*.md` per source article. It is safe to re-run; it overwrites
+those files and never deletes.
+
+Anything else in `_articles/` is left alone, so a hand-written piece lives
+there happily — `tm1-uav-project-notes.md` is one, written by hand and
+edited directly. Just don't name a hand-written file after a source slug.
 
 When a new phase is written up, add its row to the `PHASES` table at the
 top of `tools/sync_articles.py` (the phase label, the theme chip and the

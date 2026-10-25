@@ -78,6 +78,19 @@ A new phase needs a row in the `PHASES` table at the top of that script
 (phase label, theme chip, thumbnail alt text). The script stops with a clear
 message if the row is missing rather than guessing.
 
+**Project Notes** is the third Writing format, alongside Article and Essay:
+one page per project holding the concepts, equations and lessons behind it
+(`_articles/tm1-uav-project-notes.md`). It is **hand-written**, not generated
+— the sync script only overwrites files named after a source slug, so it
+survives a re-sync. It shares the project's `series_slug` but has no `part`,
+which is what keeps it out of the numbered series: no progress bar, no
+previous/next, not counted in "Part 7 of 7". The project page links to it and
+each article's sidebar links to it.
+
+The series is called **TM-1 UAV**. Do not call it "project notes" — that
+phrase now means the format above. `sync_articles.py` rewrites the old phrase
+out of the caveat line it lifts from the source articles.
+
 **Projects** are front matter only: copy `_projects/_TEMPLATE.md`, which
 documents every key. All seven sections (Why / What was built / How it was
 built / Results / Decisions worth arguing about / Phase log / Written up in)
@@ -127,6 +140,11 @@ in `localStorage` and applied before first paint by an inline script in
 - Filtering hides entries with the `hidden` attribute; `[hidden]` is forced
   to `display: none !important` in the CSS because the layout classes would
   otherwise win.
+- `readbar` and `nav_section` live in `_config.yml` defaults, **not** in a
+  layout's front matter. Jekyll exposes a layout's own front matter as
+  `layout`, not `page`, so set there they silently never fire.
+- The home page picks its project by `featured: true`, not by name. Matching
+  on a name broke once already when the project was renamed.
 
 Run it locally with `bundle exec jekyll serve --livereload`.
 
@@ -140,3 +158,6 @@ Run it locally with `bundle exec jekyll serve --livereload`.
 - No analytics and no custom domain yet; both were deliberately deferred.
 - `vendor/bundle/` is committed from the old site and is dead weight
   (excluded from the build). Worth removing, but ask first.
+- The source articles in the project repo still open with "TM-1 project
+  notes, milestone M4…". `SIMNOTE_FIXES` in `sync_articles.py` rewrites that
+  on import; delete it once the source says "TM-1 UAV".

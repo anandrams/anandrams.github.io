@@ -1,6 +1,6 @@
 ---
 title: "TM-1"
-code: TM-1
+code: TM-1 UAV
 card_title: "TM-1: a simulated fixed-wing UAV for traffic monitoring"
 summary: >-
   A 2.5 kg fixed-wing aircraft that plans and flies missions over downtown
@@ -8,6 +8,8 @@ summary: >-
   review at every phase.
 
 status: In progress
+# Shown on the home page; exactly one project should carry this.
+featured: true
 progress_note: "Phase 0 → M4 accepted"
 updated: 2026-10-24
 

@@ -1,7 +1,5 @@
 ---
 layout: default
-readbar: true
-nav_section: Writing
 ---
 
 {%- comment -%}
@@ -21,7 +19,14 @@ nav_section: Writing
     math          true to load KaTeX
 {%- endcomment -%}
 
-{%- assign siblings = site.articles | where: "series_slug", page.series_slug | sort: "part" -%}
+{%- comment -%}
+  Only the numbered parts count as siblings. A project-notes piece shares
+  the series but has no `part`, so it must not turn "Part 7 of 7" into
+  "Part 7 of 8" or appear in the previous/next pager.
+{%- endcomment -%}
+{%- assign in_series = site.articles | where: "series_slug", page.series_slug -%}
+{%- assign siblings = in_series | where_exp: "a", "a.part" | sort: "part" -%}
+{%- assign notes_page = in_series | where: "kind", "Project Notes" | first -%}
 {%- assign total = siblings | size -%}
 {%- assign idx = 0 -%}
 {%- for a in siblings -%}
@@ -49,9 +54,12 @@ nav_section: Writing
 
     <div style="display: flex; flex-direction: column; gap: 14px; padding-top: 4px; border-top: 1px solid var(--line)">
       {%- if page.project and page.project_url %}
-      <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 14px">
+      <div style="display: flex; flex-direction: column; gap: 6px; padding-top: 14px">
         <span class="eyebrow">Project</span>
         <a class="lnk" href="{{ page.project_url | relative_url }}">{{ page.project }} case study &rarr;</a>
+        {%- if notes_page and notes_page.url != page.url %}
+        <a class="lnk" href="{{ notes_page.url | relative_url }}">Concepts and equations &rarr;</a>
+        {%- endif %}
       </div>
       {%- endif %}
 
@@ -72,7 +80,7 @@ nav_section: Writing
     <header style="display: flex; flex-direction: column; gap: 20px; max-width: 65ch">
 
       <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
-        <span class="kind{% if page.kind == 'Essay' %} essay{% endif %}">{{ page.kind | default: "Article" }}</span>
+        <span class="kind{% if page.kind == 'Essay' %} essay{% elsif page.kind == 'Project Notes' %} notes{% endif %}">{{ page.kind | default: "Article" }}</span>
         {%- if page.series %}
         <a class="eyebrow" style="text-decoration: none" href="{{ '/writing/' | relative_url }}">{{ page.series }}</a>
         {%- endif %}
@@ -93,7 +101,11 @@ nav_section: Writing
         {%- if page.phase %}<span>{{ page.phase }}</span>{%- endif %}
       </div>
 
-      {%- if page.series and total > 1 %}
+      {%- comment -%}
+        A piece without a `part` (the project-notes page) sits beside
+        the series rather than inside it: no progress bar.
+      {%- endcomment -%}
+      {%- if page.part and page.series and total > 1 %}
       <div style="display: flex; flex-direction: column; gap: 8px">
         <div class="seg-row" role="img" aria-label="Part {{ page.part }} of {{ total }} in this series">
           {%- for a in siblings -%}

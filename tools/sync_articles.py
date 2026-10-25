@@ -23,8 +23,11 @@ What it does to each file:
 Nothing is invented: `theme` and `image_alt` come from PHASES below, which
 is the one table to extend when a new phase is written.
 
-It is safe to re-run: files in `_articles/` and the copied media are
-overwritten, and nothing else is touched. Only standard library.
+It is safe to re-run: it overwrites one file per source article, named
+after that article's `slug`, and copies the media. It never deletes, and
+it leaves every other file in `_articles/` alone — so a hand-written
+piece such as the project-notes page survives, as long as its filename
+does not collide with a source slug. Only standard library.
 """
 
 import argparse
@@ -43,10 +46,18 @@ import sys
 
 PROJECT = {
     "slug": "tm1",
-    "series": "TM-1 project notes",
-    "project": "TM-1",
+    "series": "TM-1 UAV",
+    "project": "TM-1 UAV",
     "project_url": "/projects/tm1/",
 }
+
+# The source articles open with "TM-1 project notes, milestone M4. …".
+# On the site "Project Notes" is a format of its own, so that phrase is
+# rewritten to the series name as the caveat line is lifted out. Delete
+# this once the source articles say the same thing.
+SIMNOTE_FIXES = [
+    ("TM-1 project notes", PROJECT["series"]),
+]
 
 PHASES = {
     "Phase 0": {
@@ -158,6 +169,8 @@ def strip_title_and_note(body):
             stripped = lines[i].strip() if i < len(lines) else ""
             if stripped.startswith("*") and stripped.endswith("*") and not stripped.startswith("**"):
                 simnote = stripped.strip("*").strip()
+                for old, new in SIMNOTE_FIXES:
+                    simnote = simnote.replace(old, new)
                 i += 1
             continue
 

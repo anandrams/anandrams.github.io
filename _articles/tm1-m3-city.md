@@ -5,14 +5,14 @@ date: 2026-10-18 06:00:00 +0000
 part: 6
 phase: "M3"
 kind: Article
-series: "TM-1 project notes"
+series: "TM-1 UAV"
 series_slug: tm1
-project: "TM-1"
+project: "TM-1 UAV"
 project_url: /projects/tm1/
 theme: "Airspace & Rules"
 image: /assets/articles/tm1/media/m3/screens/05_flythrough.jpg
 image_alt: "A flight path over a 3D view of downtown Chicago."
-simnote: "TM-1 project notes, milestone M3. Simulation only: no real aircraft was built or flown."
+simnote: "TM-1 UAV, milestone M3. Simulation only: no real aircraft was built or flown."
 tags:
   - "UAV"
   - "Part 107"

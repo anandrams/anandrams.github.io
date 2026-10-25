@@ -5,14 +5,14 @@ date: 2026-10-17 02:00:00 +0000
 part: 2
 phase: "M0"
 kind: Article
-series: "TM-1 project notes"
+series: "TM-1 UAV"
 series_slug: tm1
-project: "TM-1"
+project: "TM-1 UAV"
 project_url: /projects/tm1/
 theme: "Flight Dynamics"
 image: /assets/articles/tm1/media/m0/m0_turn.jpg
 image_alt: "A plot of the aircraft turning."
-simnote: "TM-1 project notes, milestone M0. Simulation only: no real aircraft was built or flown."
+simnote: "TM-1 UAV, milestone M0. Simulation only: no real aircraft was built or flown."
 tags:
   - "UAV"
   - "flight dynamics"

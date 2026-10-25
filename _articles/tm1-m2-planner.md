@@ -5,14 +5,14 @@ date: 2026-10-18 05:00:00 +0000
 part: 5
 phase: "M2"
 kind: Article
-series: "TM-1 project notes"
+series: "TM-1 UAV"
 series_slug: tm1
-project: "TM-1"
+project: "TM-1 UAV"
 project_url: /projects/tm1/
 theme: "Mission Planning"
 image: /assets/articles/tm1/media/m2/screens/01_turn_too_tight.jpg
 image_alt: "The planner rejecting a route whose turn is too tight."
-simnote: "TM-1 project notes, milestone M2. Simulation only: no real aircraft was built or flown."
+simnote: "TM-1 UAV, milestone M2. Simulation only: no real aircraft was built or flown."
 tags:
   - "UAV"
   - "mission planning"

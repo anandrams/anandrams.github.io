@@ -8,10 +8,26 @@ description: >-
   programs. Writing on systems engineering, controls and applied AI.
 ---
 
-{%- assign articles = site.articles | sort: "part" -%}
-{%- assign latest = site.articles | sort: "date" | reverse | first -%}
-{%- assign tm1 = site.projects | where: "code", "TM-1" | first -%}
-{%- assign tm1_parts = site.articles | where: "series_slug", "tm1" -%}
+{%- comment -%}
+  The project on the home page is the one marked `featured`, falling back
+  to the most recently updated. Matching on a name would break the day a
+  name changes, which is exactly what happened once already.
+{%- endcomment -%}
+{%- assign featured = site.projects | where: "featured", true -%}
+{%- if featured.size > 0 -%}
+  {%- assign project = featured | first -%}
+{%- else -%}
+  {%- assign project = site.projects | sort: "updated" | reverse | first -%}
+{%- endif -%}
+
+{%- comment -%}
+  Only numbered parts count here: the project-notes page shares the series
+  but has no `part`, and must not become the "latest" card or add a segment
+  to the progress bar.
+{%- endcomment -%}
+{%- assign numbered = site.articles | where_exp: "a", "a.part" -%}
+{%- assign latest = numbered | sort: "date" | reverse | first -%}
+{%- assign series_parts = numbered | where: "series_slug", project.series_slug -%}
 
 <section class="paper" style="border-bottom: 1px solid var(--line)">
   <div class="wrap">
@@ -48,7 +64,7 @@ description: >-
 </section>
 
 {%- comment -%} ---------- projects ---------- {%- endcomment -%}
-{%- if tm1 %}
+{%- if project %}
 <section>
   <div class="wrap">
     <div style="padding: 80px 0 0; display: flex; flex-direction: column; gap: 28px">
@@ -61,43 +77,43 @@ description: >-
         <a class="lnk" href="{{ '/projects/' | relative_url }}">All projects &rarr;</a>
       </div>
 
-      <a class="card" href="{{ tm1.url | relative_url }}" style="padding: 32px; gap: 24px; text-decoration: none; display: flex; flex-direction: column">
+      <a class="card" href="{{ project.url | relative_url }}" style="padding: 32px; gap: 24px; text-decoration: none; display: flex; flex-direction: column">
 
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
           <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
             <span class="pill">
-              <span class="dot {{ tm1.status | downcase | replace: ' ', '-' }}" aria-hidden="true"></span>
-              {{ tm1.status }}
+              <span class="dot {{ project.status | downcase | replace: ' ', '-' }}" aria-hidden="true"></span>
+              {{ project.status }}
             </span>
-            <span class="mono" style="font-size: 12px; color: var(--muted)">{{ tm1.progress_note }}</span>
+            <span class="mono" style="font-size: 12px; color: var(--muted)">{{ project.progress_note }}</span>
           </div>
-          <span class="mono" style="font-size: 12px; color: var(--muted)">Updated {{ tm1.updated | date: "%-d %b %Y" }}</span>
+          <span class="mono" style="font-size: 12px; color: var(--muted)">Updated {{ project.updated | date: "%-d %b %Y" }}</span>
         </div>
 
         <div class="g-6-5">
 
           <div style="display: flex; flex-direction: column; gap: 18px">
-            <h3 class="disp" style="font-size: 30px; line-height: 1.14; font-weight: 650">{{ tm1.card_title }}</h3>
-            <p style="margin: 0; font-size: 17px; line-height: 1.6; color: var(--muted)">{{ tm1.summary }}</p>
-            {%- if tm1.highlights %}
+            <h3 class="disp" style="font-size: 30px; line-height: 1.14; font-weight: 650">{{ project.card_title }}</h3>
+            <p style="margin: 0; font-size: 17px; line-height: 1.6; color: var(--muted)">{{ project.summary }}</p>
+            {%- if project.highlights %}
             <ul style="margin: 0; padding-left: 20px; font-size: 16px; line-height: 1.6; display: flex; flex-direction: column; gap: 8px">
-              {%- for h in tm1.highlights %}<li>{{ h }}</li>{% endfor -%}
+              {%- for h in project.highlights %}<li>{{ h }}</li>{% endfor -%}
             </ul>
             {%- endif %}
             <div style="display: flex; gap: 8px; flex-wrap: wrap">
-              {%- for s in tm1.stack %}<span class="tag">{{ s }}</span>{% endfor -%}
+              {%- for s in project.stack %}<span class="tag">{{ s }}</span>{% endfor -%}
             </div>
-            <span class="lnk">Read the project notes &rarr;</span>
+            <span class="lnk">Read the case study &rarr;</span>
           </div>
 
           <div style="display: flex; flex-direction: column; gap: 16px">
-            {%- assign hero_img = tm1.home_image | default: tm1.card_image -%}
+            {%- assign hero_img = project.home_image | default: project.card_image -%}
             {%- if hero_img %}
-            <img src="{{ hero_img | relative_url }}" alt="{{ tm1.home_image_alt | default: tm1.card_image_alt }}" style="width: 100%; height: 190px; object-fit: cover; border-radius: 8px; display: block; background: var(--chip)" loading="lazy" decoding="async">
+            <img src="{{ hero_img | relative_url }}" alt="{{ project.home_image_alt | default: project.card_image_alt }}" style="width: 100%; height: 190px; object-fit: cover; border-radius: 8px; display: block; background: var(--chip)" loading="lazy" decoding="async">
             {%- endif %}
-            {%- if tm1.figures %}
+            {%- if project.figures %}
             <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 24px">
-              {%- for f in tm1.figures %}
+              {%- for f in project.figures %}
               <div class="num"><b>{{ f.value }}</b><span>{{ f.label }}</span></div>
               {%- endfor %}
             </div>
@@ -147,7 +163,7 @@ description: >-
             {%- if latest.part %}
             <div style="display: flex; flex-direction: column; gap: 8px">
               <div class="seg-row" role="img" aria-label="Part {{ latest.part }} of an ongoing series">
-                {%- for a in tm1_parts %}<span class="seg"></span>{% endfor -%}
+                {%- for a in series_parts %}<span class="seg"></span>{% endfor -%}
                 <span class="seg todo"></span><span class="seg todo"></span>
               </div>
               <span class="mono" style="font-size: 12px; color: var(--muted)">Part {{ latest.part }} of an ongoing series</span>
@@ -162,12 +178,12 @@ description: >-
 
           <a href="{{ '/writing/' | relative_url }}" style="display: flex; flex-direction: column; gap: 10px; padding: 22px 0; border-bottom: 1px solid var(--line); text-decoration: none">
             <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px">
-              <span class="disp" style="font-size: 22px; font-weight: 650">TM-1 project notes</span>
-              <span class="mono" style="font-size: 12px; color: var(--muted)">{{ tm1_parts | size }} parts &middot; ongoing</span>
+              <span class="disp" style="font-size: 22px; font-weight: 650">TM-1 UAV</span>
+              <span class="mono" style="font-size: 12px; color: var(--muted)">{{ series_parts | size }} parts &middot; ongoing</span>
             </div>
             <span style="font-size: 15px; line-height: 1.5; color: var(--muted)">Building a simulated fixed-wing UAV, one phase at a time.</span>
             <div class="seg-row">
-              {%- for a in tm1_parts %}<span class="seg"></span>{% endfor -%}
+              {%- for a in series_parts %}<span class="seg"></span>{% endfor -%}
               <span class="seg todo"></span><span class="seg todo"></span>
             </div>
           </a>

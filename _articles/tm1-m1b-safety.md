@@ -5,14 +5,14 @@ date: 2026-10-18 04:00:00 +0000
 part: 4
 phase: "M1 stage B"
 kind: Article
-series: "TM-1 project notes"
+series: "TM-1 UAV"
 series_slug: tm1
-project: "TM-1"
+project: "TM-1 UAV"
 project_url: /projects/tm1/
 theme: "Safety"
 image: /assets/articles/tm1/media/m1/figures/m1b_safety.jpg
 image_alt: "Safety-monitor traces from a logged flight."
-simnote: "TM-1 project notes, milestone M1, stage B. Simulation only: no real aircraft was built or flown."
+simnote: "TM-1 UAV, milestone M1, stage B. Simulation only: no real aircraft was built or flown."
 tags:
   - "UAV"
   - "safety"

@@ -5,14 +5,14 @@ date: 2026-10-17 01:00:00 +0000
 part: 1
 phase: "Phase 0"
 kind: Article
-series: "TM-1 project notes"
+series: "TM-1 UAV"
 series_slug: tm1
-project: "TM-1"
+project: "TM-1 UAV"
 project_url: /projects/tm1/
 theme: "Systems Engineering"
 image: /assets/articles/tm1/media/phase0/figures/sizing_wing_loading.jpg
 image_alt: "A wing-loading sizing chart."
-simnote: "TM-1 project notes, Phase 0. Simulation only: no real aircraft was built or flown."
+simnote: "TM-1 UAV, Phase 0. Simulation only: no real aircraft was built or flown."
 tags:
   - "UAV"
   - "aircraft sizing"

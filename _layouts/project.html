@@ -1,6 +1,5 @@
 ---
 layout: default
-nav_section: Projects
 ---
 
 {%- comment -%}
@@ -16,7 +15,14 @@ nav_section: Projects
   See _projects/_TEMPLATE.md for the full list of keys.
 {%- endcomment -%}
 
-{%- assign writeups = site.articles | where: "series_slug", page.series_slug | sort: "part" | reverse -%}
+{%- comment -%}
+  The numbered parts of the series, newest first. The project-notes piece
+  shares the series but has no `part`, so it is pulled out separately and
+  linked on its own rather than counted as a part.
+{%- endcomment -%}
+{%- assign in_series = site.articles | where: "series_slug", page.series_slug -%}
+{%- assign writeups = in_series | where_exp: "a", "a.part" | sort: "part" | reverse -%}
+{%- assign notes_page = in_series | where: "kind", "Project Notes" | first -%}
 {%- assign status_slug = page.status | default: "In progress" | downcase | replace: " ", "-" -%}
 
 <div class="wrap">
@@ -257,6 +263,14 @@ nav_section: Projects
       </a>
       {%- endfor %}
     </div>
+    {%- if notes_page %}
+    <a class="wlist" href="{{ notes_page.url | relative_url }}" style="border-bottom: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 16px 18px; margin-top: 18px; grid-template-columns: 112px minmax(0, 1fr) 110px">
+      <span class="kind notes">Project Notes</span>
+      <span class="wt" style="font-size: 16px; line-height: 1.45; font-weight: 500">{{ notes_page.title }}</span>
+      <span class="mono" style="font-size: 12px; color: var(--muted)">Updated {{ notes_page.date | date: "%-d %b %Y" }}</span>
+    </a>
+    {%- endif %}
+
     <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; padding-top: 18px">
       {%- assign first = writeups | last %}
       <a class="btn pri" href="{{ first.url | relative_url }}">Start the series</a>

@@ -1,0 +1,283 @@
+---
+layout: default
+nav_section: Projects
+---
+
+{%- comment -%}
+  One project case study. Every project uses the same seven sections in
+  the same order, so two projects can be read the same way.
+
+  The prose lives in front matter as Markdown block scalars (`key: |`)
+  and the structured parts as lists. That is what makes the template
+  repeatable: a new project is a copy of _projects/_TEMPLATE.md with the
+  values changed. Any section whose front matter is missing is skipped,
+  so a young project can publish with Why and What alone.
+
+  See _projects/_TEMPLATE.md for the full list of keys.
+{%- endcomment -%}
+
+{%- assign writeups = site.articles | where: "series_slug", page.series_slug | sort: "part" | reverse -%}
+{%- assign status_slug = page.status | default: "In progress" | downcase | replace: " ", "-" -%}
+
+<div class="wrap">
+
+  <div style="padding: 40px 0 32px; display: flex; flex-direction: column; gap: 18px">
+    <nav aria-label="Breadcrumb" class="mono" style="font-size: 13px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap">
+      <a href="{{ '/projects/' | relative_url }}" style="text-decoration: none">Projects</a>
+      <span aria-hidden="true">/</span>
+      <span style="color: var(--ink)">{{ page.code | default: page.title }}</span>
+    </nav>
+    <h1 class="disp" style="font-size: 44px; line-height: 1.08; font-weight: 700; max-width: 24ch">{{ page.card_title | default: page.title }}</h1>
+    {%- if page.summary %}
+    <p style="margin: 0; font-family: var(--serif); font-size: 20px; line-height: 1.65; max-width: 64ch">{{ page.summary }}</p>
+    {%- endif %}
+  </div>
+
+  {%- comment -%} ---------- at a glance ---------- {%- endcomment -%}
+  <div class="glance">
+    <div>
+      <span class="eyebrow">Status</span>
+      <span class="pill" style="align-self: flex-start">
+        <span class="dot {{ status_slug }}" aria-hidden="true"></span>{{ page.status | default: "In progress" }}
+      </span>
+      {%- if page.progress_note %}<span class="mono" style="font-size: 12px; color: var(--muted)">{{ page.progress_note }}</span>{% endif -%}
+    </div>
+    <div>
+      <span class="eyebrow">Built with</span>
+      <span style="font-size: 15px; line-height: 1.45">{{ page.built_with }}</span>
+      {%- if page.built_note %}<span class="mono" style="font-size: 12px; color: var(--muted)">{{ page.built_note }}</span>{% endif -%}
+    </div>
+    <div>
+      <span class="eyebrow">Verified</span>
+      <span style="font-size: 15px; line-height: 1.45">{{ page.verified }}</span>
+      {%- if page.verified_note %}<span class="mono" style="font-size: 12px; color: var(--muted)">{{ page.verified_note }}</span>{% endif -%}
+    </div>
+    <div>
+      <span class="eyebrow">Written up in</span>
+      <span style="font-size: 15px; line-height: 1.45">{{ writeups | size }} parts{% if page.series_window %}, {{ page.series_window }}{% endif %}</span>
+      <a class="mono lnk" href="{{ '/writing/' | relative_url }}" style="font-size: 12px">Read the series &rarr;</a>
+    </div>
+  </div>
+
+  {%- comment -%} ---------- 01 Why ---------- {%- endcomment -%}
+  {%- if page.why %}
+  <section class="sec" aria-labelledby="why">
+    <div class="secn">
+      <span class="n">01</span>
+      <h2 id="why" class="disp" style="font-size: 32px; font-weight: 700; line-height: 1.12">Why</h2>
+    </div>
+    <div class="prose" style="font-size: 19px">{{ page.why | markdownify }}</div>
+
+    {%- if page.constraints and page.constraints.size > 0 %}
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span class="eyebrow">The constraints that shaped it</span>
+      <ul class="bul">
+        {%- for c in page.constraints %}<li>{{ c }}</li>{% endfor -%}
+      </ul>
+    </div>
+    {%- endif %}
+  </section>
+  {%- endif %}
+
+  {%- comment -%} ---------- 02 What was built ---------- {%- endcomment -%}
+  {%- if page.what %}
+  <section class="sec" aria-labelledby="what">
+    <div class="secn">
+      <span class="n">02</span>
+      <h2 id="what" class="disp" style="font-size: 32px; font-weight: 700; line-height: 1.12">What was built</h2>
+    </div>
+    <div class="prose" style="font-size: 19px">{{ page.what | markdownify }}</div>
+
+    {%- if page.diagram and page.diagram.size > 0 %}
+    <figure class="paper" style="margin: 8px 0 0; padding: 28px; border: 1px solid var(--line); border-radius: var(--r-lg); display: flex; flex-direction: column; gap: 14px">
+      <figcaption class="eyebrow">Fig. 1 &mdash; {{ page.diagram_caption | default: "How the pieces fit together" }}</figcaption>
+      {%- for row in page.diagram %}
+      <div class="band">
+        {%- for n in row.nodes %}
+        <div class="node{% if n.acc %} acc{% endif %}{% if row.nodes.size == 1 %} full{% endif %}">
+          <b>{{ n.title }}</b>
+          {%- if n.sub %}<span>{{ n.sub }}</span>{% endif -%}
+        </div>
+        {%- endfor %}
+      </div>
+      {%- if row.down %}
+      <div class="vdown"><span>{{ row.down }}</span><span aria-hidden="true">&darr;</span></div>
+      {%- endif %}
+      {%- endfor %}
+    </figure>
+    {%- endif %}
+
+    {%- if page.sim_note %}
+    <p class="simnote" style="max-width: 72ch">
+      <span aria-hidden="true" style="color: var(--warn); font-weight: 600">&#9888;</span>
+      <span>{{ page.sim_note }}</span>
+    </p>
+    {%- endif %}
+  </section>
+  {%- endif %}
+
+  {%- comment -%} ---------- 03 How it was built ---------- {%- endcomment -%}
+  {%- if page.how %}
+  <section class="sec" aria-labelledby="how">
+    <div class="secn">
+      <span class="n">03</span>
+      <h2 id="how" class="disp" style="font-size: 32px; font-weight: 700; line-height: 1.12">How it was built</h2>
+    </div>
+    <div class="prose" style="font-size: 19px">{{ page.how | markdownify }}</div>
+
+    {%- if page.loop and page.loop.size > 0 %}
+    <figure style="margin: 8px 0 0; padding: 28px; border: 1px solid var(--line); border-radius: var(--r-lg); display: flex; flex-direction: column; gap: 14px">
+      <figcaption class="eyebrow">Fig. 2 &mdash; {{ page.loop_caption | default: "The loop, once per phase" }}</figcaption>
+      <div class="band stretch">
+        {%- for step in page.loop %}
+        <div class="node{% if step.acc %} acc{% endif %}">
+          <span class="mono" style="font-size: 11px; color: var(--accent)">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <b>{{ step.title }}</b>
+          {%- if step.note %}<span>{{ step.note }}</span>{% endif -%}
+        </div>
+        {%- endfor %}
+      </div>
+      {%- if page.loop_note %}
+      <div class="aside-dash">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M3 12a9 9 0 1 0 3-6.7"></path><path d="M3 4v5h5"></path></svg>
+        <span>{{ page.loop_note }}</span>
+      </div>
+      {%- endif %}
+    </figure>
+    {%- endif %}
+
+    {%- if page.stack and page.stack.size > 0 %}
+    <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 8px">
+      <span class="eyebrow">Stack</span>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        {%- for t in page.stack %}<span class="tag">{{ t }}</span>{% endfor -%}
+      </div>
+    </div>
+    {%- endif %}
+  </section>
+  {%- endif %}
+
+  {%- comment -%} ---------- 04 Results ---------- {%- endcomment -%}
+  {%- if page.results or page.figures %}
+  <section class="sec" aria-labelledby="results">
+    <div class="secn">
+      <span class="n">04</span>
+      <h2 id="results" class="disp" style="font-size: 32px; font-weight: 700; line-height: 1.12">Results</h2>
+    </div>
+
+    <div class="g-res">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        {%- if page.results %}
+        <ul class="bul">
+          {%- for r in page.results %}<li>{{ r }}</li>{% endfor -%}
+        </ul>
+        {%- endif %}
+        {%- if page.results_caveat %}
+        <p class="endnote" style="font-size: 14px; max-width: 62ch">
+          <span class="eyebrow" style="display: block; margin-bottom: 6px">What this does not show</span>
+          {{ page.results_caveat }}
+        </p>
+        {%- endif %}
+      </div>
+
+      {%- if page.figures and page.figures.size > 0 %}
+      <div class="card" style="padding: 22px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px">
+        {%- for f in page.figures %}
+        <div class="num"><b>{{ f.value }}</b><span>{{ f.label }}</span></div>
+        {%- endfor %}
+      </div>
+      {%- endif %}
+    </div>
+
+    {%- if page.gallery and page.gallery.size > 0 %}
+    <div class="g3" style="gap: 14px; padding-top: 8px">
+      {%- for g in page.gallery %}
+      <img src="{{ g.src | relative_url }}" alt="{{ g.alt }}" style="width: 100%; height: 150px; object-fit: cover; border-radius: var(--r-md); border: 1px solid var(--line); display: block; background: var(--chip)" loading="lazy" decoding="async">
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </section>
+  {%- endif %}
+
+  {%- comment -%} ---------- 05 Decisions ---------- {%- endcomment -%}
+  {%- if page.decisions and page.decisions.size > 0 %}
+  <section class="sec" aria-labelledby="decisions">
+    <div class="secn">
+      <span class="n">05</span>
+      <h2 id="decisions" class="disp" style="font-size: 32px; font-weight: 700; line-height: 1.12">Decisions worth arguing about</h2>
+    </div>
+    <div>
+      {%- for d in page.decisions %}
+      <div style="padding: 20px 0; {% unless forloop.last %}border-bottom: 1px solid var(--line); {% endunless %}display: flex; flex-direction: column; gap: 8px; max-width: 72ch">
+        <span class="disp" style="font-size: 20px; font-weight: 650; line-height: 1.25">{{ d.claim }}</span>
+        <span style="font-size: 16px; line-height: 1.6; color: var(--muted)">{{ d.text }}</span>
+      </div>
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
+
+  {%- comment -%} ---------- 06 Phase log ---------- {%- endcomment -%}
+  {%- if page.phase_log and page.phase_log.size > 0 %}
+  <section class="sec" aria-labelledby="log">
+    <div class="secn">
+      <span class="n">06</span>
+      <h2 id="log" class="disp" style="font-size: 32px; font-weight: 700; line-height: 1.12">Phase log</h2>
+    </div>
+    <div>
+      {%- for p in page.phase_log %}
+      <div class="logrow">
+        <span class="mono" style="color: var(--muted)">{{ p.date | date: "%-d %b %Y" }}</span>
+        <span><b style="font-weight: 600">{{ p.phase }}</b> {{ p.note }}</span>
+      </div>
+      {%- endfor %}
+    </div>
+    {%- if page.next_up %}
+    <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 14px">
+      <span class="eyebrow">Next</span>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; color: var(--muted); max-width: 66ch">{{ page.next_up }}</p>
+    </div>
+    {%- endif %}
+  </section>
+  {%- endif %}
+
+  {%- comment -%} ---------- 07 Written up in ---------- {%- endcomment -%}
+  {%- if writeups.size > 0 %}
+  <section class="sec" aria-labelledby="writing" style="padding-bottom: 8px">
+    <div class="secn">
+      <span class="n">07</span>
+      <h2 id="writing" class="disp" style="font-size: 32px; font-weight: 700; line-height: 1.12">Written up in</h2>
+    </div>
+    <div>
+      {%- for a in writeups %}
+      <a class="wlist" href="{{ a.url | relative_url }}"{% if forloop.last %} style="border-bottom: 0"{% endif %}>
+        <span class="badge">Part {{ a.part | prepend: '0' | slice: -2, 2 }}</span>
+        <span class="wt" style="font-size: 16px; line-height: 1.45; font-weight: 500">{{ a.title }}</span>
+        <span class="mono" style="font-size: 12px; color: var(--muted)">{{ a.date | date: "%-d %b %Y" }}</span>
+      </a>
+      {%- endfor %}
+    </div>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; padding-top: 18px">
+      {%- assign first = writeups | last %}
+      <a class="btn pri" href="{{ first.url | relative_url }}">Start the series</a>
+      {%- if page.repo %}
+        {%- if page.repo.url and page.repo.url != "" %}<a class="btn" href="{{ page.repo.url }}" rel="noopener">Repository</a>{% endif -%}
+        {%- if page.repo.note %}<em style="font-size: 13px; color: var(--muted); line-height: 1.5">{{ page.repo.note }}</em>{% endif -%}
+      {%- endif %}
+    </div>
+    {%- if page.credits %}
+    <p class="mono" style="margin: 18px 0 0; font-size: 12px; color: var(--muted); line-height: 1.6">{{ page.credits }}</p>
+    {%- endif %}
+  </section>
+  {%- endif %}
+
+  {%- assign extra = content | strip -%}
+  {%- if extra != "" %}
+  <section class="sec">
+    <div class="prose" style="font-size: 18px">{{ content }}</div>
+  </section>
+  {%- endif %}
+
+  <div style="height: 80px"></div>
+
+</div>

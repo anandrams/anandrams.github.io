@@ -1,14 +1,83 @@
-# theme: jekyll-theme-cayman
-# title: Anand Ram Sathyanarayanan
-# description: Engineering Consultant | Automotive Software & Simulation Expert | Technical Product Manager
+title: Anand Ram Sathyanarayanan
+tagline: "MBSE, Controls & AI-Augmented Engineering"
+description: >-
+  Systems engineer with over a decade in automotive, from production-critical
+  control algorithms to the requirements and architecture layer behind large
+  programs. Writing on systems engineering, controls and applied AI.
+url: "https://anandrams.github.io"
+baseurl: ""
+lang: en
 
-# Controls visibility of the Projects nav link AND the homepage "View all projects" button.
-# Flip to true when actively job-searching / networking and want the Projects summary page discoverable.
-show_projects: false
+author:
+  name: Anand Ram Sathyanarayanan
+  linkedin: anandramsathyanarayanan
+
+# The link-preview picture for any page that doesn't set its own.
+image: /assets/og-default.jpg
+
+# Shown in the footer on every page.
+disclaimer: "Views are my own and do not reflect my employer."
+
+# Paste the Formspree endpoint here once the form is created
+# (https://formspree.io → new form → copy the POST URL).
+# Until then the contact page shows a LinkedIn fallback instead.
+formspree_endpoint: ""
+
+# Reading speed used to derive "N min read" for each article.
+words_per_minute: 220
+
+collections:
+  articles:
+    output: true
+    permalink: /writing/:name/
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: articles
+    values:
+      layout: article
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
+  - scope:
+      path: ""
+    values:
+      layout: page
+
+# GitHub Pages builds this site itself, so only its allowed plugins can be
+# used. The writing feed is a template of its own (feed.xml) rather than
+# jekyll-feed, because the articles are a collection, not posts.
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+kramdown:
+  input: GFM
+  auto_ids: true
+  # Without this, GFM turns every single newline into a <br>, which would
+  # break the wrapped paragraphs the articles are written in.
+  hard_wrap: false
+  # Display equations are left as <script type="math/tex">, which site.js
+  # hands to KaTeX on the pages that set `math: true`.
+  math_engine: mathjax
+  syntax_highlighter: rouge
 
 exclude:
-  - _archive/
-  - CLAUDE.md
-  - README.md
   - Gemfile
   - Gemfile.lock
+  - README.md
+  - tools/
+  - vendor/
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - _archive/
+  - "*.workspace"
+  - .codelite/
+  - .claude/

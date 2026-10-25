@@ -1,0 +1,94 @@
+---
+layout: page
+permalink: /contact/
+nav_section: Contact
+title: Contact
+description: How to reach Anand Ram Sathyanarayanan.
+---
+
+<div class="cols" style="padding: 68px 0 0; gap: 72px">
+
+  <div style="display: flex; flex-direction: column; gap: 28px; min-width: 0; max-width: 60ch">
+
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <span class="eyebrow">Contact</span>
+      <h1 class="disp" style="font-size: 46px; line-height: 1.07; font-weight: 700">Get in touch</h1>
+      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: var(--muted)">
+        Happy to hear about systems-engineering work, a correction to something
+        I've written, or a question about one of the projects.
+      </p>
+    </div>
+
+    {%- if site.formspree_endpoint and site.formspree_endpoint != "" %}
+    <form action="{{ site.formspree_endpoint }}" method="POST" style="display: flex; flex-direction: column; gap: 20px">
+
+      <label class="field">
+        <span>Your name</span>
+        <input type="text" name="name" autocomplete="name" required>
+      </label>
+
+      <label class="field">
+        <span>Email</span>
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+
+      <label class="field">
+        <span>Message</span>
+        <textarea name="message" required></textarea>
+      </label>
+
+      {%- comment -%}
+        Formspree's spam trap: a field a person never sees and never fills,
+        and a subject line so the mail is recognisable in the inbox.
+      {%- endcomment -%}
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px">
+      <input type="hidden" name="_subject" value="Message from {{ site.url | remove: 'https://' }}">
+
+      <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap">
+        <button class="btn pri" type="submit">Send</button>
+        <span style="font-size: 14px; color: var(--muted); line-height: 1.5">Goes straight to my inbox. Nothing is stored on this site.</span>
+      </div>
+
+    </form>
+    {%- else %}
+    <div class="card" style="padding: 26px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start">
+      <span class="eyebrow">By email</span>
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; color: var(--muted)">
+        The contact form isn't connected yet. Until it is, LinkedIn is the
+        quickest way to reach me.
+      </p>
+      <a class="btn pri" href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" rel="me noopener">Message me on LinkedIn</a>
+    </div>
+    {%- endif %}
+
+  </div>
+
+  <aside style="display: flex; flex-direction: column; gap: 24px">
+
+    <div class="card" style="padding: 22px 22px 8px; display: flex; flex-direction: column">
+      <span class="eyebrow" style="padding-bottom: 14px">Elsewhere</span>
+      <div class="fact">
+        <span class="eyebrow">LinkedIn</span>
+        <a class="lnk" href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" rel="me noopener">{{ site.author.linkedin }}</a>
+      </div>
+      <div class="fact">
+        <span class="eyebrow">Résumé</span>
+        <a class="lnk" href="{{ '/assets/Resume.pdf' | relative_url }}">Download (PDF)</a>
+      </div>
+      <div class="fact">
+        <span class="eyebrow">Writing feed</span>
+        <a class="lnk" href="{{ '/feed.xml' | relative_url }}">RSS</a>
+      </div>
+    </div>
+
+    <p class="endnote" style="font-size: 14px">
+      <span class="eyebrow" style="display: block; margin-bottom: 8px">A note on the projects</span>
+      The work published here is my own, done outside my job, and the views on
+      this site are mine rather than my employer's. I can't discuss customer
+      work or anything under a client agreement.
+    </p>
+
+  </aside>
+</div>
+
+<div style="height: 88px"></div>

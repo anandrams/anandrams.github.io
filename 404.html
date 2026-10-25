@@ -1,0 +1,20 @@
+---
+layout: page
+permalink: /404.html
+title: Page not found
+sitemap: false
+---
+
+<div style="padding: 110px 0 140px; display: flex; flex-direction: column; gap: 22px; max-width: 54ch">
+  <span class="eyebrow">404</span>
+  <h1 class="disp" style="font-size: 48px; line-height: 1.07; font-weight: 700">That page isn't here</h1>
+  <p style="margin: 0; font-size: 19px; line-height: 1.6; color: var(--muted)">
+    The address may have changed, or the page may never have existed. The
+    writing and the projects are both one click away.
+  </p>
+  <div style="display: flex; gap: 12px; flex-wrap: wrap; padding-top: 6px">
+    <a class="btn pri" href="{{ '/writing/' | relative_url }}">Writing</a>
+    <a class="btn" href="{{ '/projects/' | relative_url }}">Projects</a>
+    <a class="btn" href="{{ '/' | relative_url }}">Home</a>
+  </div>
+</div>

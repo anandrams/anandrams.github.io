@@ -1,0 +1,161 @@
+---
+layout: default
+readbar: true
+nav_section: Writing
+---
+
+{%- comment -%}
+  One article in a series.
+
+  Front matter it uses, all optional except title:
+    title, description, date
+    kind          Article | Essay | Note      (default: Article)
+    series        display name of the series
+    series_slug   groups the parts together
+    part          this part's number
+    phase         the project phase this part covers
+    project       project name, for the link back to the case study
+    project_url   path of that case study
+    simnote       the standing caveat shown above the body
+    corrections   list of { date, note } — the block is hidden when empty
+    math          true to load KaTeX
+{%- endcomment -%}
+
+{%- assign siblings = site.articles | where: "series_slug", page.series_slug | sort: "part" -%}
+{%- assign total = siblings | size -%}
+{%- assign idx = 0 -%}
+{%- for a in siblings -%}
+  {%- if a.url == page.url -%}{%- assign idx = forloop.index0 -%}{%- endif -%}
+{%- endfor -%}
+{%- assign words = content | number_of_words -%}
+{%- assign mins = words | divided_by: site.words_per_minute | plus: 1 -%}
+
+<div class="wrap">
+<div class="art-grid">
+
+  <aside class="art-aside">
+
+    {%- assign chunks = content | split: '<h2 id="' -%}
+    {%- if chunks.size > 1 %}
+    <nav class="toc" aria-label="On this page">
+      <span class="eyebrow" style="display: block; margin-bottom: 10px">Contents</span>
+      {%- for chunk in chunks offset: 1 -%}
+        {%- assign hid = chunk | split: '"' | first -%}
+        {%- assign htext = chunk | split: '</h2>' | first | split: '">' | last | strip_html -%}
+        <a href="#{{ hid }}">{{ htext }}</a>
+      {%- endfor -%}
+    </nav>
+    {%- endif %}
+
+    <div style="display: flex; flex-direction: column; gap: 14px; padding-top: 4px; border-top: 1px solid var(--line)">
+      {%- if page.project and page.project_url %}
+      <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 14px">
+        <span class="eyebrow">Project</span>
+        <a class="lnk" href="{{ page.project_url | relative_url }}">{{ page.project }} case study &rarr;</a>
+      </div>
+      {%- endif %}
+
+      {%- if page.tags and page.tags.size > 0 %}
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span class="eyebrow">Themes</span>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap">
+          {%- for t in page.tags limit: 6 %}<span class="tag">{{ t }}</span>{% endfor -%}
+        </div>
+      </div>
+      {%- endif %}
+    </div>
+
+  </aside>
+
+  <article>
+
+    <header style="display: flex; flex-direction: column; gap: 20px; max-width: 65ch">
+
+      <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
+        <span class="kind{% if page.kind == 'Essay' %} essay{% endif %}">{{ page.kind | default: "Article" }}</span>
+        {%- if page.series %}
+        <a class="eyebrow" style="text-decoration: none" href="{{ '/writing/' | relative_url }}">{{ page.series }}</a>
+        {%- endif %}
+        {%- if page.part and total > 1 %}
+        <span class="badge alt">Part {{ page.part }} of {{ total }}</span>
+        {%- endif %}
+      </div>
+
+      <h1 class="disp" style="font-size: 46px; line-height: 1.08; font-weight: 700">{{ page.title }}</h1>
+
+      {%- if page.description %}
+      <p style="margin: 0; font-size: 20px; line-height: 1.55; color: var(--muted)">{{ page.description }}</p>
+      {%- endif %}
+
+      <div class="mono" style="display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--muted); padding-bottom: 6px; border-bottom: 1px solid var(--line)">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+        <span>{{ mins }} min read</span>
+        {%- if page.phase %}<span>{{ page.phase }}</span>{%- endif %}
+      </div>
+
+      {%- if page.series and total > 1 %}
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <div class="seg-row" role="img" aria-label="Part {{ page.part }} of {{ total }} in this series">
+          {%- for a in siblings -%}
+          <span class="seg{% if a.part > page.part %} todo{% endif %}"></span>
+          {%- endfor -%}
+        </div>
+      </div>
+      {%- endif %}
+
+      {%- if page.simnote %}
+      <p class="simnote">
+        <span aria-hidden="true" style="color: var(--warn); font-weight: 600">&#9888;</span>
+        <span>{{ page.simnote }}</span>
+      </p>
+      {%- endif %}
+
+    </header>
+
+    <div class="prose" style="padding-top: 30px">
+      {{ content }}
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 22px; padding: 40px 0 72px">
+
+      {%- if page.corrections and page.corrections.size > 0 %}
+      <div class="endnote">
+        <span class="eyebrow" style="display: block; margin-bottom: 10px">Corrections</span>
+        {%- for c in page.corrections %}
+        <p><span class="mono" style="font-size: 13px">{{ c.date | date: "%-d %b %Y" }}</span> — {{ c.note }}</p>
+        {%- endfor %}
+      </div>
+      {%- endif %}
+
+      <p class="endnote" style="font-size: 14px">
+        Found something wrong here? <a href="{{ '/contact/' | relative_url }}">Tell me</a> and I'll correct it on
+        the page, with the change noted and dated rather than quietly swapped.
+      </p>
+
+      {%- if total > 1 %}
+      <nav class="pager" aria-label="Series navigation">
+        {%- assign previdx = idx | minus: 1 -%}
+        {%- assign nextidx = idx | plus: 1 -%}
+        {%- if idx > 0 -%}
+          {%- assign prev = siblings[previdx] %}
+          <a href="{{ prev.url | relative_url }}" rel="prev">
+            <span class="eyebrow">&larr; Part {{ prev.part }}</span>
+            <b>{{ prev.title }}</b>
+          </a>
+        {%- endif -%}
+        {%- if nextidx < total -%}
+          {%- assign next = siblings[nextidx] %}
+          <a href="{{ next.url | relative_url }}" rel="next" style="{% if idx == 0 %}grid-column: 2{% endif %}">
+            <span class="eyebrow">Part {{ next.part }} &rarr;</span>
+            <b>{{ next.title }}</b>
+          </a>
+        {%- endif -%}
+      </nav>
+      {%- endif %}
+
+    </div>
+
+  </article>
+
+</div>
+</div>

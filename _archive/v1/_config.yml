@@ -1,0 +1,14 @@
+# theme: jekyll-theme-cayman
+# title: Anand Ram Sathyanarayanan
+# description: Engineering Consultant | Automotive Software & Simulation Expert | Technical Product Manager
+
+# Controls visibility of the Projects nav link AND the homepage "View all projects" button.
+# Flip to true when actively job-searching / networking and want the Projects summary page discoverable.
+show_projects: false
+
+exclude:
+  - _archive/
+  - CLAUDE.md
+  - README.md
+  - Gemfile
+  - Gemfile.lock

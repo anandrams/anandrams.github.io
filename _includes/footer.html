@@ -1,0 +1,35 @@
+<footer class="site-foot">
+  <div class="wrap">
+    <div style="padding: 52px 0 44px; display: flex; flex-direction: column; gap: 36px">
+
+      <div class="foot-cols">
+        <div style="display: flex; flex-direction: column; gap: 14px; max-width: 340px">
+          <span class="disp" style="font-size: 24px; font-weight: 650; line-height: 1.18">Working on something hard in systems engineering?</span>
+          <a class="lnk" href="{{ '/contact/' | relative_url }}">Send me a note &rarr;</a>
+        </div>
+
+        <div style="display: flex; gap: 60px; flex-wrap: wrap">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <span class="eyebrow" style="margin-bottom: 8px">Site</span>
+            <a class="tlink" href="{{ '/writing/' | relative_url }}">Writing</a>
+            <a class="tlink" href="{{ '/projects/' | relative_url }}">Projects</a>
+            <a class="tlink" href="{{ '/about/' | relative_url }}">About</a>
+            <a class="tlink" href="{{ '/contact/' | relative_url }}">Contact</a>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <span class="eyebrow" style="margin-bottom: 8px">Elsewhere</span>
+            <a class="tlink" href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" rel="me noopener">LinkedIn</a>
+            <a class="tlink" href="{{ '/assets/Resume.pdf' | relative_url }}">Résumé (PDF)</a>
+            <a class="tlink" href="{{ '/feed.xml' | relative_url }}">RSS</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding-top: 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px; color: var(--muted)">
+        <span>{{ site.disclaimer }}</span>
+        <span class="mono" style="font-size: 12px">&copy; {{ site.time | date: "%Y" }} {{ site.author.name }}</span>
+      </div>
+
+    </div>
+  </div>
+</footer>

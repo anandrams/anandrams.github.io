@@ -1,0 +1,16 @@
+---
+layout: null
+---
+{
+  "name": "{{ site.title }}",
+  "short_name": "Anand Ram S",
+  "description": "{{ site.description | strip_newlines | strip }}",
+  "start_url": "{{ '/' | relative_url }}",
+  "display": "browser",
+  "background_color": "#F5F2EA",
+  "theme_color": "#16191C",
+  "icons": [
+    { "src": "{{ '/assets/icon-192.png' | relative_url }}", "sizes": "192x192", "type": "image/png" },
+    { "src": "{{ '/assets/icon-512.png' | relative_url }}", "sizes": "512x512", "type": "image/png" }
+  ]
+}

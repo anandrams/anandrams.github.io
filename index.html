@@ -1,0 +1,188 @@
+---
+layout: default
+title: Anand Ram Sathyanarayanan
+nav_section: Home
+description: >-
+  Systems engineer with over a decade in automotive, from production-critical
+  control algorithms to the requirements and architecture layer behind large
+  programs. Writing on systems engineering, controls and applied AI.
+---
+
+{%- assign articles = site.articles | sort: "part" -%}
+{%- assign latest = site.articles | sort: "date" | reverse | first -%}
+{%- assign tm1 = site.projects | where: "code", "TM-1" | first -%}
+{%- assign tm1_parts = site.articles | where: "series_slug", "tm1" -%}
+
+<section class="paper" style="border-bottom: 1px solid var(--line)">
+  <div class="wrap">
+    <div style="display: flex; flex-direction: column; gap: 26px; padding: 76px 0 64px; max-width: 56ch">
+
+      <p class="eyebrow" style="margin: 0; font-size: 14px; letter-spacing: .09em; color: var(--ink)">MBSE, Controls &amp; AI-Augmented Engineering</p>
+
+      <h1 class="disp" style="font-size: 62px; line-height: 1.02; font-weight: 700">Systems Engineer</h1>
+
+      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: var(--muted)">
+        Over a decade in automotive, from production-critical control algorithms to the
+        requirements and architecture layer behind large programs. Now exploring agentic
+        AI workflows in systems engineering.
+      </p>
+
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center">
+        <a class="btn pri" href="{{ '/writing/' | relative_url }}">Read the writing</a>
+        <a class="btn" href="{{ '/projects/' | relative_url }}">See the projects</a>
+      </div>
+
+      <div style="display: flex; gap: 28px; flex-wrap: wrap">
+        <a class="tlink" href="{{ '/contact/' | relative_url }}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+          Get in touch
+        </a>
+        <a class="tlink" href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" rel="me noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v11M4 4.5v.01M9 20v-6a3 3 0 016 0v6M9 9v11"></path></svg>
+          LinkedIn
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ---------- projects ---------- {%- endcomment -%}
+{%- if tm1 %}
+<section>
+  <div class="wrap">
+    <div style="padding: 80px 0 0; display: flex; flex-direction: column; gap: 28px">
+
+      <div style="display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span class="eyebrow">Projects</span>
+          <h2 class="disp" style="font-size: 38px; font-weight: 700; line-height: 1.1">What I'm building</h2>
+        </div>
+        <a class="lnk" href="{{ '/projects/' | relative_url }}">All projects &rarr;</a>
+      </div>
+
+      <a class="card" href="{{ tm1.url | relative_url }}" style="padding: 32px; gap: 24px; text-decoration: none; display: flex; flex-direction: column">
+
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
+            <span class="pill">
+              <span class="dot {{ tm1.status | downcase | replace: ' ', '-' }}" aria-hidden="true"></span>
+              {{ tm1.status }}
+            </span>
+            <span class="mono" style="font-size: 12px; color: var(--muted)">{{ tm1.progress_note }}</span>
+          </div>
+          <span class="mono" style="font-size: 12px; color: var(--muted)">Updated {{ tm1.updated | date: "%-d %b %Y" }}</span>
+        </div>
+
+        <div class="g-6-5">
+
+          <div style="display: flex; flex-direction: column; gap: 18px">
+            <h3 class="disp" style="font-size: 30px; line-height: 1.14; font-weight: 650">{{ tm1.card_title }}</h3>
+            <p style="margin: 0; font-size: 17px; line-height: 1.6; color: var(--muted)">{{ tm1.summary }}</p>
+            {%- if tm1.highlights %}
+            <ul style="margin: 0; padding-left: 20px; font-size: 16px; line-height: 1.6; display: flex; flex-direction: column; gap: 8px">
+              {%- for h in tm1.highlights %}<li>{{ h }}</li>{% endfor -%}
+            </ul>
+            {%- endif %}
+            <div style="display: flex; gap: 8px; flex-wrap: wrap">
+              {%- for s in tm1.stack %}<span class="tag">{{ s }}</span>{% endfor -%}
+            </div>
+            <span class="lnk">Read the project notes &rarr;</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            {%- assign hero_img = tm1.home_image | default: tm1.card_image -%}
+            {%- if hero_img %}
+            <img src="{{ hero_img | relative_url }}" alt="{{ tm1.home_image_alt | default: tm1.card_image_alt }}" style="width: 100%; height: 190px; object-fit: cover; border-radius: 8px; display: block; background: var(--chip)" loading="lazy" decoding="async">
+            {%- endif %}
+            {%- if tm1.figures %}
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 24px">
+              {%- for f in tm1.figures %}
+              <div class="num"><b>{{ f.value }}</b><span>{{ f.label }}</span></div>
+              {%- endfor %}
+            </div>
+            {%- endif %}
+          </div>
+
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- comment -%} ---------- writing ---------- {%- endcomment -%}
+<section>
+  <div class="wrap">
+    <div style="padding: 76px 0 96px; display: flex; flex-direction: column; gap: 30px">
+
+      <div style="display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span class="eyebrow">Writing</span>
+          <h2 class="disp" style="font-size: 38px; font-weight: 700; line-height: 1.1">Articles, essays and project notes</h2>
+        </div>
+        <a class="lnk" href="{{ '/writing/' | relative_url }}">All writing &rarr;</a>
+      </div>
+
+      <div class="g-7-5">
+
+        {%- if latest %}
+        {%- assign latest_words = latest.content | number_of_words -%}
+        {%- assign latest_mins = latest_words | divided_by: site.words_per_minute | plus: 1 -%}
+        <a class="card" href="{{ latest.url | relative_url }}" style="padding: 32px; gap: 20px; justify-content: space-between; text-decoration: none; display: flex; flex-direction: column">
+          <div style="display: flex; flex-direction: column; gap: 18px">
+            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
+              <span class="badge">Latest{% if latest.part %} &middot; Part {{ latest.part }}{% endif %}</span>
+              <span class="mono" style="font-size: 13px; color: var(--muted)">{{ latest.series }}</span>
+            </div>
+            <h3 class="disp" style="font-size: 32px; line-height: 1.14; font-weight: 650">{{ latest.title }}</h3>
+            <p style="margin: 0; font-size: 17px; line-height: 1.6; color: var(--muted); max-width: 56ch">{{ latest.description }}</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
+              {%- if latest.theme %}<span class="chip">{{ latest.theme }}</span>{% endif -%}
+              <span class="mono" style="font-size: 13px; color: var(--muted)">{{ latest.date | date: "%-d %b %Y" }} &middot; {{ latest_mins }} min read</span>
+            </div>
+            {%- if latest.part %}
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <div class="seg-row" role="img" aria-label="Part {{ latest.part }} of an ongoing series">
+                {%- for a in tm1_parts %}<span class="seg"></span>{% endfor -%}
+                <span class="seg todo"></span><span class="seg todo"></span>
+              </div>
+              <span class="mono" style="font-size: 12px; color: var(--muted)">Part {{ latest.part }} of an ongoing series</span>
+            </div>
+            {%- endif %}
+          </div>
+        </a>
+        {%- endif %}
+
+        <div style="display: flex; flex-direction: column">
+          <span class="eyebrow" style="padding-bottom: 14px; border-bottom: 1px solid var(--line)">Series</span>
+
+          <a href="{{ '/writing/' | relative_url }}" style="display: flex; flex-direction: column; gap: 10px; padding: 22px 0; border-bottom: 1px solid var(--line); text-decoration: none">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px">
+              <span class="disp" style="font-size: 22px; font-weight: 650">TM-1 project notes</span>
+              <span class="mono" style="font-size: 12px; color: var(--muted)">{{ tm1_parts | size }} parts &middot; ongoing</span>
+            </div>
+            <span style="font-size: 15px; line-height: 1.5; color: var(--muted)">Building a simulated fixed-wing UAV, one phase at a time.</span>
+            <div class="seg-row">
+              {%- for a in tm1_parts %}<span class="seg"></span>{% endfor -%}
+              <span class="seg todo"></span><span class="seg todo"></span>
+            </div>
+          </a>
+
+          <a href="{{ '/writing/' | relative_url }}" style="display: flex; flex-direction: column; gap: 10px; padding: 22px 0; border-bottom: 1px solid var(--line); text-decoration: none">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px">
+              <span class="disp" style="font-size: 22px; font-weight: 650">Earlier writing</span>
+              <span class="mono" style="font-size: 12px; color: var(--muted)">4 posts &middot; 2025</span>
+            </div>
+            <span style="font-size: 15px; line-height: 1.5; color: var(--muted)">Articles on agile and model-based practice, published on LinkedIn.</span>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

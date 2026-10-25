@@ -1,0 +1,881 @@
+---
+# No layout: this file is only here so Jekyll expands the Liquid in it.
+layout: null
+---
+/* ------------------------------------------------------------------
+   Anand Ram Sathyanarayanan — site styles
+   Tokens come from the design style guide. Change them here only.
+   ------------------------------------------------------------------ */
+
+:root {
+  --bg: #F5F2EA;
+  --surface: #FCFBF7;
+  --ink: #16191C;
+  --muted: #4F5A63;
+  --line: #D8D2C2;
+  --chip: #ECE7DA;
+  --accent: #B8420C;
+  --onaccent: #FFFFFF;
+  --ok: #17612F;
+  --warn: #8A5A00;
+  --grid: rgba(22, 25, 28, .05);
+
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --disp: 'Bricolage Grotesque', var(--sans);
+  --mono: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --serif: 'Source Serif 4', Georgia, serif;
+
+  --wrap: 1200px;
+  --gutter: 48px;
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+}
+
+:root[data-theme="dark"] {
+  --bg: #101418;
+  --surface: #161B20;
+  --ink: #ECE9E1;
+  --muted: #A3AEB7;
+  --line: #2A323A;
+  --chip: #1E252C;
+  --accent: #F08A4B;
+  --onaccent: #101418;
+  --ok: #7BD99A;
+  --warn: #F2C14E;
+  --grid: rgba(236, 233, 225, .05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101418;
+    --surface: #161B20;
+    --ink: #ECE9E1;
+    --muted: #A3AEB7;
+    --line: #2A323A;
+    --chip: #1E252C;
+    --accent: #F08A4B;
+    --onaccent: #101418;
+    --ok: #7BD99A;
+    --warn: #F2C14E;
+    --grid: rgba(236, 233, 225, .05);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+img { max-width: 100%; height: auto; }
+
+/* The filters hide entries with the `hidden` attribute. Without this the
+   class that lays an entry out (display: grid, flex) would win over the
+   browser's own [hidden] rule and nothing would ever disappear. */
+[hidden] { display: none !important; }
+
+/* Visible only to screen readers, until focused. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--accent);
+  color: var(--onaccent);
+  padding: 12px 18px;
+  z-index: 10;
+  text-decoration: none;
+  font-weight: 600;
+}
+.skip:focus { left: 0; }
+
+/* ---------- layout ---------- */
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---------- type ---------- */
+
+.disp { font-family: var(--disp); letter-spacing: -.02em; }
+.mono { font-family: var(--mono); }
+
+h1, h2, h3, h4 {
+  font-family: var(--disp);
+  letter-spacing: -.02em;
+  margin: 0;
+}
+
+.eyebrow {
+  font: 500 12px var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lnk {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+.lnk:hover { text-decoration: underline; }
+
+/* ---------- header ---------- */
+
+.site-head { border-bottom: 1px solid var(--line); }
+
+.head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 0;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.mark {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-md);
+  background: var(--ink);
+  color: var(--bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 500 14px var(--mono);
+  flex: none;
+}
+
+.brand-name { font-family: var(--disp); font-size: 19px; font-weight: 600; }
+
+.nav { display: flex; gap: 26px; flex-wrap: wrap; }
+
+.navl {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 10px 2px;
+  border-bottom: 2px solid transparent;
+}
+.navl:hover { color: var(--ink); }
+.navl[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+
+.icobtn {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  padding: 0;
+}
+.icobtn:hover { border-color: var(--accent); }
+
+/* The theme button shows the theme it switches TO: a moon while the page
+   is light, a sun while it is dark. */
+.i-sun { display: none; }
+.i-moon { display: inline; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .i-sun { display: inline; }
+  :root:not([data-theme="light"]) .i-moon { display: none; }
+}
+:root[data-theme="dark"] .i-sun { display: inline; }
+:root[data-theme="dark"] .i-moon { display: none; }
+:root[data-theme="light"] .i-sun { display: none; }
+:root[data-theme="light"] .i-moon { display: inline; }
+
+.nav-toggle { display: none; }
+
+/* ---------- buttons, chips, badges ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: var(--r-md);
+  font: 600 15px var(--sans);
+  text-decoration: none;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+}
+.btn.pri {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--onaccent);
+}
+.btn:hover { transform: translateY(-1px); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--chip);
+  border: 1px solid var(--line);
+  font: 500 13px var(--sans);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.tag {
+  font: 400 12px var(--mono);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 3px 8px;
+}
+
+.badge {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  font: 500 12px var(--mono);
+  letter-spacing: .05em;
+  background: var(--accent);
+  color: var(--onaccent);
+  padding: 4px 9px;
+  border-radius: var(--r-sm);
+  text-transform: uppercase;
+}
+.badge.alt {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+
+.kind {
+  display: inline-flex;
+  align-items: center;
+  font: 500 11px var(--mono);
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 3px 8px;
+}
+.kind.essay { color: var(--accent); border-color: var(--accent); }
+
+/* status: never colour alone — the shapes differ too */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font: 500 12px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--chip);
+  border: 1px solid var(--line);
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
+.dot.shipped { background: var(--ok); }
+.dot.in-progress { border: 2px solid var(--warn); background: linear-gradient(90deg, var(--warn) 50%, transparent 50%); }
+.dot.concept { border: 2px solid var(--muted); }
+
+/* series progress */
+.seg-row { display: flex; gap: 6px; }
+.seg { height: 6px; border-radius: 3px; flex: 1; background: var(--accent); }
+.seg.todo { background: transparent; border: 1px dashed var(--muted); }
+
+/* ---------- cards ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+}
+a.card { text-decoration: none; display: flex; flex-direction: column; }
+a.card:hover { border-color: var(--accent); }
+
+.num { display: flex; flex-direction: column; gap: 3px; }
+.num b { font-family: var(--disp); font-size: 30px; font-weight: 700; line-height: 1; }
+.num span { font: 400 12px var(--mono); color: var(--muted); line-height: 1.4; }
+
+/* ---------- filters ---------- */
+
+.fbtn {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font: 500 14px var(--sans);
+  cursor: pointer;
+}
+.fbtn:hover { border-color: var(--accent); }
+.fbtn[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.filter-row {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.filter-row .eyebrow { min-width: 62px; padding-top: 12px; }
+.filter-set { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--muted);
+  max-width: 520px;
+}
+.search:focus-within { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
+.search input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  font: 400 16px var(--sans);
+  color: var(--ink);
+  outline: none;
+  min-width: 0;
+}
+
+/* ---------- writing index ---------- */
+
+.legend {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.legend > div { display: flex; flex-direction: column; gap: 5px; flex: 1 1 220px; align-items: flex-start; }
+.legend p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
+
+.entry {
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr) 180px;
+  gap: 30px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  align-items: start;
+}
+.entry:hover .entry-title { color: var(--accent); }
+.entry-meta { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.entry-title { font-family: var(--disp); font-size: 25px; line-height: 1.2; font-weight: 650; margin: 0; }
+.entry-sum { margin: 0; font-size: 16px; line-height: 1.6; color: var(--muted); max-width: 62ch; }
+/* Most thumbnails are plots and screenshots. `contain` on a white card
+   shows the whole figure; `cover` would crop most of them to blank chart
+   paper. */
+.thumb {
+  width: 100%;
+  height: 104px;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  display: block;
+  background: #FFFFFF;
+  padding: 4px;
+}
+
+/* ---------- article ---------- */
+
+.prose {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.7;
+  max-width: 65ch;
+}
+.prose > p { margin: 0 0 1.15em; }
+.prose h2 {
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 700;
+  margin: 2em 0 .6em;
+  scroll-margin-top: 24px;
+}
+.prose h3 {
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -.01em;
+  margin: 1.6em 0 .5em;
+}
+.prose a { color: var(--accent); }
+.prose code {
+  font-family: var(--mono);
+  font-size: .82em;
+  background: var(--chip);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 1px 6px;
+}
+.prose pre {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 100%;
+}
+.prose pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+.prose blockquote {
+  margin: 1.2em 0;
+  padding-left: 24px;
+  border-left: 3px solid var(--accent);
+  font-family: var(--disp);
+  font-size: 30px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+.prose blockquote p { margin: 0; }
+.prose ul, .prose ol { padding-left: 22px; }
+.prose li { margin-bottom: .5em; }
+.prose img { border-radius: 10px; border: 1px solid var(--line); display: block; }
+.prose video {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  display: block;
+  background: var(--chip);
+}
+/* A paragraph that is nothing but italics is a figure caption. site.js
+   adds the class, because CSS can't tell "the only child element" from
+   "all of the paragraph" — an <em> in mid-sentence is also an only child. */
+.prose p.cap {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: -.6em;
+  max-width: 62ch;
+}
+.prose p.cap em { font-style: italic; }
+/* wide tables scroll rather than break the column */
+.prose .table-scroll { overflow-x: auto; max-width: 100%; }
+.prose table { border-collapse: collapse; font-family: var(--sans); font-size: 16px; width: 100%; }
+.prose th, .prose td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.prose th {
+  font: 500 12px var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.toc a {
+  display: block;
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--muted);
+  padding: 9px 0 9px 16px;
+  border-left: 2px solid var(--line);
+}
+.toc a:hover { color: var(--ink); }
+.toc a.on { color: var(--ink); border-left-color: var(--accent); font-weight: 500; }
+
+/* Fixed, so it stays visible while the article scrolls. */
+.readbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--line);
+  z-index: 20;
+}
+.readbar > i { display: block; height: 3px; width: 0; background: var(--accent); }
+
+/* Display maths, rendered by KaTeX. A long equation scrolls rather
+   than widening the article column. */
+.mathblock {
+  margin: 1.4em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0;
+}
+/* Shown only when KaTeX could not be loaded: the LaTeX source, legible,
+   instead of a missing equation. */
+.mathraw {
+  font: 400 14px/1.6 var(--mono);
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  white-space: pre-wrap;
+}
+
+/* The simulation-only line each article opens with. */
+.simnote {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--warn);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 65ch;
+}
+
+/* Corrections and credits, at the foot of an article. */
+.endnote {
+  max-width: 65ch;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.endnote p { margin: 0 0 .7em; }
+.endnote p:last-child { margin: 0; }
+.endnote a { color: var(--accent); }
+
+/* Previous / next inside a series. */
+.pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 65ch;
+}
+.pager a {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  text-decoration: none;
+  min-height: 44px;
+}
+.pager a:hover { border-color: var(--accent); }
+.pager a:hover b { color: var(--accent); }
+.pager b { font-family: var(--disp); font-size: 17px; font-weight: 600; line-height: 1.3; }
+
+.art-aside {
+  position: sticky;
+  top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.art-grid {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 72px;
+  padding: 44px 0 24px;
+  align-items: start;
+}
+
+/* ---------- project ---------- */
+
+.glance {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+.glance > div {
+  padding: 18px 20px;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.glance > div:last-child { border-right: 0; }
+
+.node {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 1 150px;
+  min-width: 0;
+}
+.node b { font-weight: 600; font-size: 15px; line-height: 1.25; }
+.node span { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+.node.acc { border-color: var(--accent); }
+.band { display: flex; gap: 12px; flex-wrap: wrap; }
+.band.stretch { align-items: stretch; }
+.node.full { flex: 1 1 100%; }
+
+/* Bulleted lists outside article prose. */
+.bul {
+  margin: 0;
+  padding-left: 20px;
+  max-width: 72ch;
+  font-size: 16px;
+  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.bul li { margin: 0; }
+
+/* A small aside inside a figure: the loop's "what happens on failure". */
+.aside-dash {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px dashed var(--muted);
+  border-radius: var(--r-md);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.vdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 34px;
+  color: var(--muted);
+  font: 400 11px var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.logrow {
+  display: grid;
+  grid-template-columns: 118px minmax(0, 1fr);
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.wlist {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 110px;
+  gap: 18px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  align-items: baseline;
+}
+.wlist:hover .wt { color: var(--accent); }
+
+.sec { padding: 52px 0 0; display: flex; flex-direction: column; gap: 20px; }
+.secn { display: flex; align-items: baseline; gap: 14px; }
+.secn .n { font: 500 13px var(--mono); color: var(--accent); }
+
+.pcard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.pcard:hover { border-color: var(--accent); }
+.pcard:hover .pt { color: var(--accent); }
+
+/* ---------- About ---------- */
+
+/* Main column plus a narrower aside. */
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 80px;
+  align-items: start;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 0 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.fact:last-child { border-bottom: 0; }
+
+/* ---------- forms ---------- */
+
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field > span { font: 500 13px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.field input,
+.field textarea {
+  font: 400 16px var(--sans);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+  width: 100%;
+  min-height: 46px;
+}
+.field textarea { min-height: 150px; resize: vertical; line-height: 1.55; }
+.field input:focus,
+.field textarea:focus { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ---------- grids ---------- */
+
+.g2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: start; }
+.g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; }
+
+/* Uneven splits. These are classes rather than inline styles so that the
+   phone breakpoint below can actually collapse them — an inline
+   grid-template-columns would outrank any rule here. */
+.g-6-5 { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 40px; align-items: start; }
+.g-7-5 { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 44px; align-items: stretch; }
+.g-res { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 48px; align-items: start; }
+
+/* ---------- footer ---------- */
+
+.site-foot { border-top: 1px solid var(--line); background: var(--surface); }
+.foot-cols { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.tlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  min-height: 44px;
+}
+.tlink:hover { text-decoration: underline; }
+
+/* ---------- placeholder marker (remove before launch) ---------- */
+
+.ph {
+  border: 1px dashed var(--accent);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font: 500 11px var(--mono);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+/* ---------- grid paper backdrop ---------- */
+
+.paper {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+  .cols { grid-template-columns: minmax(0, 1fr); gap: 44px; }
+  .art-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .art-aside { display: none; }
+  .glance { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .glance > div { border-bottom: 1px solid var(--line); }
+  .g3 { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 860px) {
+  :root { --gutter: 20px; }
+  .g2, .g-6-5, .g-7-5, .g-res { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .head-row { gap: 12px; padding: 14px 0; }
+  .brand-name { font-size: 15px; }
+  /* When the brand and the controls don't fit on one line, keep the
+     controls on the right of the second line rather than the left. */
+  .head-ctl { margin-left: auto; }
+  /* In a column, flex-basis sets the height, so the legend cards would
+     each be 220px tall. */
+  .legend > div { flex: 0 0 auto; }
+  .entry { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .logrow, .wlist { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .legend { flex-direction: column; gap: 14px; }
+  .pager { grid-template-columns: minmax(0, 1fr); }
+  .prose { font-size: 18px; }
+  .prose h2 { font-size: 26px; }
+  .prose blockquote { font-size: 24px; padding-left: 18px; }
+  .thumb { height: 130px; }
+
+  /* the nav collapses behind a button */
+  .nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 8px;
+  }
+  /* order: 3 drops the open menu below the brand and the buttons,
+     instead of between them. */
+  .nav.open { display: flex; order: 3; }
+  .nav .navl {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    border-left: 0;
+  }
+  .nav-toggle { display: inline-flex; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .btn:hover { transform: none; }
+}
+
+@media print {
+  .site-head, .site-foot, .art-aside, .readbar, .filter-row, .search { display: none; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .prose { max-width: none; font-size: 11pt; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
+}

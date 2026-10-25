@@ -1,0 +1,89 @@
+---
+layout: page
+permalink: /projects/
+nav_section: Projects
+title: Projects
+description: >-
+  Simulation and systems-engineering projects, open-source by design, putting
+  new ideas into practice.
+---
+
+{%- assign projects = site.projects | sort: "updated" | reverse -%}
+{%- assign statuses = "Concept,In progress,Shipped" | split: "," -%}
+
+<div style="padding: 64px 0 32px; display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+  <span class="eyebrow">Projects</span>
+  <h1 class="disp" style="font-size: 48px; line-height: 1.07; font-weight: 700">Simulation and systems-engineering projects</h1>
+  <p style="margin: 0; font-size: 19px; line-height: 1.6; color: var(--muted)">Open-source by design, putting new ideas into practice.</p>
+</div>
+
+<div data-filter-scope data-filter-noun="project|projects">
+
+  <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap; padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" data-group="status">
+    <span class="eyebrow" style="min-width: 58px">Status</span>
+    <div class="filter-set" role="group" aria-label="Filter by status">
+      <button class="fbtn" type="button" data-value="">All</button>
+      {%- for s in statuses %}
+      <button class="fbtn" type="button" data-value="{{ s }}">{{ s }}</button>
+      {%- endfor %}
+    </div>
+    <span class="mono" style="font-size: 13px; color: var(--muted); margin-left: auto" data-filter-count aria-live="polite"></span>
+  </div>
+
+  <div style="padding: 32px 0 0">
+    <div class="g2">
+
+      {%- for p in projects -%}
+      {%- assign writeups = site.articles | where: "series_slug", p.series_slug -%}
+      <a class="pcard" href="{{ p.url | relative_url }}" data-item
+         data-status="{{ p.status }}"
+         data-keywords="{{ p.stack | join: ' ' }} {{ p.code }}">
+        {%- if p.card_image %}
+        <img src="{{ p.card_image | relative_url }}" alt="{{ p.card_image_alt }}" style="width: 100%; height: 210px; object-fit: cover; display: block; background: var(--chip); border-bottom: 1px solid var(--line)" loading="lazy" decoding="async">
+        {%- endif %}
+        <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+            <span class="pill">
+              <span class="dot {{ p.status | downcase | replace: ' ', '-' }}" aria-hidden="true"></span>
+              {{ p.status }}
+            </span>
+            <span class="mono" style="font-size: 12px; color: var(--muted)">Updated {{ p.updated | date: "%-d %b %Y" }}</span>
+          </div>
+
+          <h2 class="disp pt" style="font-size: 26px; line-height: 1.16; font-weight: 650">{{ p.card_title | default: p.title }}</h2>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--muted)">{{ p.summary }}</p>
+
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; padding-top: 16px; border-top: 1px solid var(--line)">
+            {%- for f in p.figures limit: 2 %}
+            <div class="num"><b style="font-size: 24px">{{ f.value }}</b><span style="font-size: 11px">{{ f.label }}</span></div>
+            {%- endfor %}
+            <div class="num"><b style="font-size: 24px">{{ writeups | size }}</b><span style="font-size: 11px">write-ups</span></div>
+          </div>
+
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            {%- for t in p.stack %}<span class="tag">{{ t }}</span>{% endfor -%}
+          </div>
+
+          <span class="lnk">Read the case study &rarr;</span>
+        </div>
+      </a>
+      {%- endfor -%}
+
+      <div style="border: 1px dashed var(--muted); border-radius: var(--r-lg); padding: 32px 24px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; min-height: 300px; justify-content: center">
+        <span class="pill"><span class="dot concept" aria-hidden="true"></span>Concept</span>
+        <span class="disp" style="font-size: 22px; font-weight: 650; line-height: 1.22; color: var(--muted)">The next project lands here</span>
+        <span style="font-size: 15px; line-height: 1.55; color: var(--muted)">Same card: a picture, status, what it does, the measured numbers, the stack, and a link to its case study.</span>
+      </div>
+
+    </div>
+
+    <div data-filter-empty hidden style="padding: 48px 0; display: flex; flex-direction: column; gap: 14px; align-items: flex-start">
+      <span class="disp" style="font-size: 23px; font-weight: 650">No projects match that filter.</span>
+      <span style="font-size: 16px; color: var(--muted)">Click the pressed filter again to clear it.</span>
+    </div>
+  </div>
+
+</div>
+
+<div style="height: 88px"></div>

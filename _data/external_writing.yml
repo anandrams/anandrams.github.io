@@ -2,6 +2,29 @@
 # the articles hosted here, marked "External", and open in a new tab.
 # Newest first.
 
+- title: "AI-Assisted Model Authoring in SMW: 4x4 Terrain Management Case Study"
+  url: https://www.linkedin.com/pulse/ai-assisted-model-authoring-smw-4x4-terrain-case-sathyanarayanan-xsv4c
+  date: 2026-10-09
+  where: LinkedIn
+  format: Article
+  theme: MBSE
+  summary: >-
+    Authoring an ARCADIA model end to end with an AI assistant, demonstrated on
+    a driver-selectable 4x4 terrain management system: what maps cleanly onto a
+    metamodel's typed elements and relationships, and what does not.
+
+- title: "Validating Flights for User-Defined Mission Plans with Agentic AI"
+  url: https://www.linkedin.com/pulse/validating-flights-user-defined-mission-plans-agentic-anand-ram-hrmbc
+  date: 2026-08-23
+  where: LinkedIn
+  format: Article
+  theme: Agentic AI
+  summary: >-
+    Using agentic AI to build the infrastructure around a UAV guidance and
+    navigation system rather than the controller itself: a waypoint designer
+    over real building data, a closed-loop test harness, and a flight replay
+    built from the simulation's own logs.
+
 - title: "Transforming Engineering Efficiency: The Architecture-Driven Simulation Revolution"
   url: https://www.linkedin.com/pulse/transforming-engineering-efficiency-simulation-sathyanarayanan-se2rc
   date: 2025-07-01

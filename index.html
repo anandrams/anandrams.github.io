@@ -190,10 +190,19 @@ description: >-
 
           <a href="{{ '/writing/' | relative_url }}" style="display: flex; flex-direction: column; gap: 10px; padding: 22px 0; border-bottom: 1px solid var(--line); text-decoration: none">
             <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px">
-              <span class="disp" style="font-size: 22px; font-weight: 650">Earlier writing</span>
-              <span class="mono" style="font-size: 12px; color: var(--muted)">4 posts &middot; 2025</span>
+              <span class="disp" style="font-size: 22px; font-weight: 650">LinkedIn</span>
+              {%- comment -%}
+                Counted and dated from the data file, so adding a post does
+                not leave a stale "4 posts · 2025" behind.
+              {%- endcomment -%}
+              {%- assign external = site.data.external_writing | sort: "date" -%}
+              {%- assign oldest = external | first -%}
+              {%- assign newest = external | last -%}
+              {%- assign from_year = oldest.date | date: "%Y" -%}
+              {%- assign to_year = newest.date | date: "%Y" -%}
+              <span class="mono" style="font-size: 12px; color: var(--muted)">{{ external.size }} posts &middot; {% if from_year == to_year %}{{ to_year }}{% else %}{{ from_year }}&ndash;{{ to_year }}{% endif %}</span>
             </div>
-            <span style="font-size: 15px; line-height: 1.5; color: var(--muted)">Articles on agile and model-based practice, published on LinkedIn.</span>
+            <span style="font-size: 15px; line-height: 1.5; color: var(--muted)">Agentic AI in systems engineering, model-based practice and agile delivery.</span>
           </a>
 
         </div>

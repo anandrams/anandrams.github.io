@@ -201,6 +201,23 @@ h1, h2, h3, h4 {
 }
 .icobtn:hover { border-color: var(--accent); }
 
+/* ---------- LinkedIn In Bug ----------
+   LinkedIn's own monochrome assets, scaled proportionally and never
+   recoloured or redrawn. Black on the light theme, white on the dark one,
+   swapped the same way as the theme-toggle icons. 20px tall keeps it above
+   the minimum size while matching the 18px line icons beside it. */
+
+.li-bug { height: 20px; width: auto; display: inline-block; vertical-align: middle; }
+.li-on-dark { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .li-on-light { display: none; }
+  :root:not([data-theme="light"]) .li-on-dark { display: inline-block; }
+}
+:root[data-theme="dark"] .li-on-light { display: none; }
+:root[data-theme="dark"] .li-on-dark { display: inline-block; }
+:root[data-theme="light"] .li-on-light { display: inline-block; }
+:root[data-theme="light"] .li-on-dark { display: none; }
+
 /* The theme button shows the theme it switches TO: a moon while the page
    is light, a sun while it is dark. */
 .i-sun { display: none; }

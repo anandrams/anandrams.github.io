@@ -70,11 +70,18 @@ description: >-
       </a>
       {%- endfor -%}
 
+      {%- comment -%}
+        Queued ideas: a dashed teaser, not a real project card. No stack, no
+        figures, no case-study link, and deliberately left out of the
+        status filter and project count above — they aren't projects yet.
+      {%- endcomment -%}
+      {%- for u in site.data.upcoming_projects %}
       <div style="border: 1px dashed var(--muted); border-radius: var(--r-lg); padding: 32px 24px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; min-height: 300px; justify-content: center">
         <span class="pill"><span class="dot concept" aria-hidden="true"></span>Concept</span>
-        <span class="disp" style="font-size: 22px; font-weight: 650; line-height: 1.22; color: var(--muted)">The next project lands here</span>
-        <span style="font-size: 15px; line-height: 1.55; color: var(--muted)">Same card: a picture, status, what it does, the measured numbers, the stack, and a link to its case study.</span>
+        <span class="disp" style="font-size: 22px; font-weight: 650; line-height: 1.22">{{ u.title }}</span>
+        <span style="font-size: 15px; line-height: 1.55; color: var(--muted)">{{ u.blurb }}</span>
       </div>
+      {%- endfor %}
 
     </div>
 

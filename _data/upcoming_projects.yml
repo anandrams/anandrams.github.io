@@ -1,0 +1,28 @@
+# Ideas queued up for active work but not yet started enough to carry their
+# own project page. Rendered as dashed placeholder cards on /projects/ —
+# intentionally not full project cards (no stack, no figures, no case study
+# link) until there's real work behind them. Order is display order.
+
+- title: "Disc Brake Thermal Optimization"
+  blurb: >-
+    Simulating a disc brake rotor's thermal behavior under repeated braking
+    loads, then iterating the geometry to cut peak temperature and improve
+    efficiency.
+
+- title: "CAD to FMEA via Graph RAG"
+  blurb: >-
+    Mining historical FMEA and warranty data with Graph RAG to surface
+    failure patterns tied to specific design features, so past failures
+    resurface automatically during new CAD work.
+
+- title: "Agentic Requirements Engineering"
+  blurb: >-
+    An agentic pipeline that drafts and refines requirements to the INCOSE
+    standard across multiple use cases, built on open-source tooling or a
+    custom UI.
+
+- title: "RL Racing Line"
+  blurb: >-
+    Training a reinforcement-learning agent to find the fastest line around
+    a track, improving lap over lap rather than following a pre-computed
+    optimum.

@@ -3,12 +3,6 @@
 # intentionally not full project cards (no stack, no figures, no case study
 # link) until there's real work behind them. Order is display order.
 
-- title: "Disc Brake Thermal Optimization"
-  blurb: >-
-    Simulating a disc brake rotor's thermal behavior under repeated braking
-    loads, then iterating the geometry to cut peak temperature and improve
-    efficiency.
-
 - title: "CAD to FMEA via Graph RAG"
   blurb: >-
     Mining historical FMEA and warranty data with Graph RAG to surface

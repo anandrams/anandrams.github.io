@@ -143,8 +143,11 @@ in `localStorage` and applied before first paint by an inline script in
 - `readbar` and `nav_section` live in `_config.yml` defaults, **not** in a
   layout's front matter. Jekyll exposes a layout's own front matter as
   `layout`, not `page`, so set there they silently never fire.
-- The home page picks its project by `featured: true`, not by name. Matching
-  on a name broke once already when the project was renamed.
+- The home page renders every project marked `featured: true` as a full
+  card, in `updated` order — not by name. Matching on a name broke once
+  already when the project was renamed. More than one project can be
+  featured at once; falls back to the single most recently updated project
+  if none are marked.
 
 Run it locally with `bundle exec jekyll serve --livereload`.
 

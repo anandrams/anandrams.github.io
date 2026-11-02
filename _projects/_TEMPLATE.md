@@ -42,10 +42,20 @@ repo:
   url: ""                 # leave empty until the repository is public
   note: "Open source after public release."
 
+report_pdf:
+  url: ""                  # /assets/....pdf, if there's a downloadable report
+  label: ""                # e.g. "Project report (PDF, 24 pages)"
+
 card_image: /assets/...   # projects index card, roughly 3:2
 card_image_alt: ""
 home_image: /assets/...   # home-page card; omit to reuse card_image
 home_image_alt: ""
+
+# Optional hero video, shown above "at a glance" in place of a static
+# image. Omit all three to go without one.
+hero_video: ""             # /assets/....mp4
+hero_video_poster: ""      # /assets/..._poster.jpg
+hero_video_caption: ""
 
 # Three or four bullets, shown on the home-page card only.
 highlights:

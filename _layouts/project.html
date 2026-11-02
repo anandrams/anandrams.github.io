@@ -39,6 +39,21 @@ layout: default
     {%- endif %}
   </div>
 
+  {%- comment -%}
+    Optional hero video, in place of a static hero image. TM-1 has none;
+    a project that ran CFD or FEA often wants one.
+  {%- endcomment -%}
+  {%- if page.hero_video %}
+  <figure style="margin: 0 0 8px">
+    <video controls playsinline preload="metadata" width="100%" style="border-radius: var(--r-lg); border: 1px solid var(--line); display: block; background: var(--chip)"{% if page.hero_video_poster %} poster="{{ page.hero_video_poster | relative_url }}"{% endif %}>
+      <source src="{{ page.hero_video | relative_url }}" type="video/mp4">
+    </video>
+    {%- if page.hero_video_caption %}
+    <figcaption style="margin-top: 10px; font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--muted)">{{ page.hero_video_caption }}</figcaption>
+    {%- endif %}
+  </figure>
+  {%- endif %}
+
   {%- comment -%} ---------- at a glance ---------- {%- endcomment -%}
   <div class="glance">
     <div>
@@ -274,6 +289,9 @@ layout: default
     <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; padding-top: 18px">
       {%- assign first = writeups | last %}
       <a class="btn pri" href="{{ first.url | relative_url }}">Start the series</a>
+      {%- if page.report_pdf and page.report_pdf.url and page.report_pdf.url != "" %}
+      <a class="btn" href="{{ page.report_pdf.url | relative_url }}">{{ page.report_pdf.label | default: "Project report (PDF)" }}</a>
+      {%- endif -%}
       {%- if page.repo %}
         {%- if page.repo.url and page.repo.url != "" %}<a class="btn" href="{{ page.repo.url }}" rel="noopener">Repository</a>{% endif -%}
         {%- if page.repo.note %}<em style="font-size: 13px; color: var(--muted); line-height: 1.5">{{ page.repo.note }}</em>{% endif -%}

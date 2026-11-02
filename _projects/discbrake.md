@@ -34,9 +34,26 @@ card_image_alt: "Parametric CAD render of the baseline ventilated brake rotor."
 home_image: /assets/articles/discbrake/media/cae_compare_c0_g5c_poster.jpg
 home_image_alt: "Side-by-side 3-D thermal FEA of the baseline and the redesigned rotor through 15 hard stops, same colour scale."
 
-hero_video: /assets/articles/discbrake/media/cae_compare_c0_g5c.mp4
-hero_video_poster: /assets/articles/discbrake/media/cae_compare_c0_g5c_poster.jpg
-hero_video_caption: "Baseline (left) and the frozen redesign G5C (right), 3-D thermal FEA through 15 hard stops, same colour scale."
+hero_video: /assets/articles/discbrake/media/cfd_heat_channel.mp4
+hero_video_poster: /assets/articles/discbrake/media/cfd_heat_channel_poster.jpg
+hero_video_caption: "CFD of a single vent channel at cruise rotational speed: air enters at the hub, cool, and leaves at the rim noticeably warmer. The single clearest result in this project for why vane geometry matters."
+
+# A CAD, an FEA and a CFD video, shown full-size further down the page
+# (section 02), so the geometry and the simulations are actually legible
+# rather than cropped into a thumbnail.
+videos:
+  - title: "Parametric CAD baseline"
+    src: /assets/articles/discbrake/media/rotor_baseline_demo.mp4
+    poster: /assets/articles/discbrake/media/rotor_baseline_demo_poster.jpg
+    caption: "The baseline rotor, generated directly from the CadQuery parametric script."
+  - title: "3-D thermal FEA"
+    src: /assets/articles/discbrake/media/cae_compare_c0_g5c.mp4
+    poster: /assets/articles/discbrake/media/cae_compare_c0_g5c_poster.jpg
+    caption: "Baseline (left) and the frozen redesign G5C (right) through 15 hard stops, same colour scale."
+  - title: "Vent airflow CFD"
+    src: /assets/articles/discbrake/media/cfd_airflow.mp4
+    poster: /assets/articles/discbrake/media/cfd_airflow_poster.jpg
+    caption: "Airflow through the full vent-channel set, OpenFOAM, rotating reference frame."
 
 # Shown on the home-page card.
 highlights:
@@ -148,12 +165,12 @@ figures:
   - { value: "23",         label: "gate reports filed" }
 
 gallery:
-  - src: /assets/articles/discbrake/media/still_rotor_baseline_demo.png
-    alt: "Parametric CAD render of the baseline ventilated brake rotor."
   - src: /assets/articles/discbrake/media/still_heat_channel.png
     alt: "CFD of one vent channel: air entering cool and warming as it flows to the rim."
   - src: /assets/articles/discbrake/media/section_compare.png
     alt: "Friction-ring sections of the baseline and redesigned rotors, same scale."
+  - src: /assets/articles/discbrake/media/doe_space.png
+    alt: "Every design sampled across five optimisation rounds, peak temperature against mass, with the frozen design marked."
 
 # ---------- 05 Decisions ----------
 decisions:

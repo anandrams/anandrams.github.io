@@ -57,6 +57,12 @@ hero_video: ""             # /assets/....mp4
 hero_video_poster: ""      # /assets/..._poster.jpg
 hero_video_caption: ""
 
+# Optional small gallery of further videos (a CAD walkthrough, an FEA
+# run, a CFD result), shown full-size in section 02, beyond the hero
+# video above. Omit to skip.
+videos:
+  - { title: "", src: /assets/....mp4, poster: /assets/..._poster.jpg, caption: "" }
+
 # Three or four bullets, shown on the home-page card only.
 highlights:
   - ""

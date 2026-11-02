@@ -57,6 +57,12 @@ Part 3. Mesh independence was checked the same way the thermal study
 checked it: three refinement levels, extrapolated to an asymptotic airflow
 value before that value was trusted.
 
+![CFD mesh for the rotating-frame vent-channel simulation](/assets/articles/discbrake/media/cfd_mesh.png)
+*The periodic-sector mesh used for the rotating-frame CFD: refined at the
+channel walls and the hub-to-rim entrance, coarser in the free-stream
+region above the vent. The finest of the three refinement levels used in
+the mesh-independence study.*
+
 ## 3. What the flow actually does inside a channel
 
 <figure style="margin: 24px 0 8px">

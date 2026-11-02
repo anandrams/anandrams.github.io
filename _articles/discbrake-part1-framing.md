@@ -101,6 +101,18 @@ class, not a reverse-engineered drawing of a real product, which is also why
 every later comparison in this series is to that baseline and not to a named
 part.
 
+<figure style="margin: 24px 0 8px">
+  <video controls playsinline preload="metadata" width="100%" style="aspect-ratio: 16 / 9; border-radius: 12px; border: 1px solid var(--line); display: block; background: var(--chip)" poster="/assets/articles/discbrake/media/rotor_baseline_demo_poster.jpg">
+    <source src="/assets/articles/discbrake/media/rotor_baseline_demo.mp4" type="video/mp4">
+  </video>
+  <figcaption style="margin-top: 10px; font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--muted)">The baseline rotor, generated directly from the CadQuery parametric script: every dimension in Section 3 above is a script parameter, not a hand-drawn feature.</figcaption>
+</figure>
+
+Building the baseline this way, as a script rather than a one-off sketch, is
+what makes everything from Part 2 onward possible: six vent-channel concepts
+in Part 2, and roughly 4,600 design variants searched in Part 5, are all the
+same parametric script with different numbers going in.
+
 ## 4. What a load case has to come from
 
 A brake rotor's temperature history depends entirely on how hard and how

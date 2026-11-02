@@ -104,6 +104,16 @@ CFD and 3-D FEA run rather than taken on the search model's word, is G5C.
 rounds. Later rounds concentrate near the constrained Pareto front; the
 three excluded regions correspond to the model gaps in Section 3.*
 
+Seen a different way, the same five rounds are a funnel: roughly 4,600
+designs evaluated, narrowing round over round as each model gap in Section
+3 closed off a region that had looked promising for the wrong reason, down
+to the handful of candidates re-verified in CFD and 3-D FEA, and finally to
+the one design frozen in Section 5.
+
+![Optimisation funnel across five rounds](/assets/articles/discbrake/media/funnel.png)
+*Designs evaluated per round, narrowing from roughly 4,600 sampled to the
+small set re-verified in CFD and 3-D FEA, to the one design frozen as G5C.*
+
 ## 5. Freezing two designs, not one
 
 G5C runs 8.2% cooler at peak than the baseline and 0.92 kg lighter, both

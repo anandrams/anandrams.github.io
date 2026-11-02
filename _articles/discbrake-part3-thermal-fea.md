@@ -79,6 +79,17 @@ only checks one stop in isolation would miss the result that matters.
 rotor, 3-D transient FEA. The peak occurs on the final stop, not an
 intermediate one.*
 
+The chart above is the number; the video below is the same simulation seen
+as a field rather than a curve — the heat climbing, stop by stop, from the
+friction surface into the vane roots.
+
+<figure style="margin: 24px 0 8px">
+  <video controls playsinline preload="metadata" width="100%" style="aspect-ratio: 16 / 9; border-radius: 12px; border: 1px solid var(--line); display: block; background: var(--chip)" poster="/assets/articles/discbrake/media/cae_thermal_stops_poster.jpg">
+    <source src="/assets/articles/discbrake/media/cae_thermal_stops.mp4" type="video/mp4">
+  </video>
+  <figcaption style="margin-top: 10px; font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--muted)">3-D transient thermal FEA, baseline rotor, periodic sector, all fifteen LC-04 stops. Same simulation as the chart above.</figcaption>
+</figure>
+
 ## 4. An uncertainty budget, not a single number
 
 A simulated peak temperature with no error bar invites exactly the kind of

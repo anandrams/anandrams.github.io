@@ -46,6 +46,12 @@ earlier stops. The summary number — 8.2% cooler — is a peak-to-peak
 comparison on the hottest stop; it is not true at every point in the run,
 and saying so plainly matters more here than the headline figure does.
 
+![Peak temperature per stop, baseline vs. G5C](/assets/articles/discbrake/media/per_stop.png)
+*Peak friction-ring temperature at each of the fifteen LC-04 stops,
+baseline vs. the frozen design G5C. G5C runs hotter through stop six and
+cooler from stop seven on — the crossover the "8.2% cooler" headline
+number doesn't show on its own.*
+
 <figure style="margin: 24px 0 8px">
   <video controls playsinline preload="metadata" width="100%" style="border-radius: 12px; border: 1px solid var(--line); display: block; background: var(--chip)" poster="/assets/articles/discbrake/media/cfd_compare_c0_g5c_poster.jpg">
     <source src="/assets/articles/discbrake/media/cfd_compare_c0_g5c.mp4" type="video/mp4">
